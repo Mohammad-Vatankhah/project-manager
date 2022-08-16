@@ -1,0 +1,99 @@
+.CreateProject h1 {
+  display: flex;
+  justify-content: center;
+  color: var(--orange);
+}
+
+.line1 {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputs input {
+  background-color: var(--inputColor);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 17px;
+  border: none;
+}
+
+.inputs input:nth-of-type(1) {
+  margin-top: 6px;
+  outline: none;
+}
+
+.select {
+  width: 250px;
+  margin-left: 40px;
+}
+
+.line2 {
+  display: flex;
+  justify-content: center;
+}
+
+.select-cw {
+  width: 525px;
+  margin-top: 20px;
+  margin-right: 13px;
+}
+
+.line3 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.description {
+  width: 525px;
+  background-color: var(--inputColor);
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  margin-right: 13px;
+}
+
+.line4 {
+  display: flex;
+  justify-content: center;
+}
+
+.line4 input{
+  position: relative;
+  z-index: 1000;
+}
+
+.addImage {
+  cursor: pointer;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addImage p {
+  margin-left: 8px;
+}
+
+.preViewImage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.preViewImage svg{
+  position: absolute;
+  left: 1.75rem;
+  color: rgb(149, 144, 144);
+}
+
+.preViewImage img{
+  width: 36%;
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.1);
+  margin-right: 35px;
+}
