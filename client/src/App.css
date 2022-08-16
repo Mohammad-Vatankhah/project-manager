@@ -15,7 +15,6 @@
 }
 
 .App{
-  overflow: hidden;
   color: var(--black);
   background-color: #f3f3f3;
   padding: 1rem 1rem;
@@ -28,4 +27,5 @@
   border-radius: 50%;
   background-color: #a6ddf0;
   filter: blur(72px);
+
 }
