@@ -6,17 +6,18 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
 
 const Project = (data) => {
+  const likeStyle = { fontSize: 30, color: "orange", cursor: "pointer" }
   return (
     <div className="Project">
       <img src={data.data.img} alt="" />
       <div className="projectReaction">
         {data.data.liked ? (
           <AiFillHeart
-            style={{ fontSize: 30, color: "orange", cursor: "pointer" }}
+            style={likeStyle}
           />
         ) : (
           <AiOutlineHeart
-            style={{ fontSize: 30, color: "orange", cursor: "pointer" }}
+            style={likeStyle}
           />
         )}
         <FaRegCommentAlt
