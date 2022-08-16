@@ -10,13 +10,13 @@ const LogoSearch = () => {
     height: 20,
     minHeight: 20,
   });
-  const options = [
-    { value: "employee", label: <FaUserAlt color="#f99827" /> },
-    { value: "company", label: <FaBuilding color="#f99827" /> },
-  ];
+  // const options = [
+  //   { value: "employee", label: <FaUserAlt color="#f99827" /> },
+  //   { value: "company", label: <FaBuilding color="#f99827" /> },
+  // ];
   return (
     <div className="LogoSearch">
-      <Select
+      {/* <Select
         placeholder=""
         defaultValue={{
           value: "employee",
@@ -29,7 +29,7 @@ const LogoSearch = () => {
         styles={{ control: customControlStyles }}
         className="select"
         options={options}
-      />
+      /> */}
       <div className="Search">
         <input type="text" placeholder="#Explore" />
         <div className="s-icon">
