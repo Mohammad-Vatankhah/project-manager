@@ -17,6 +17,11 @@ const LogoSearch = () => {
   return (
     <div className="LogoSearch">
       <Select
+        placeholder=""
+        defaultValue={{
+          value: "employee",
+          label: <FaUserAlt color="#f99827" />,
+        }}
         components={{
           DropdownIndicator: () => null,
           IndicatorSeparator: () => null,
