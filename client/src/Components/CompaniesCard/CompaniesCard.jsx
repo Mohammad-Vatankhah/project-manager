@@ -4,7 +4,7 @@ import { Companies } from "../../Data/CompaniesData";
 export const CompaniesCard = () => {
   return (
     <div className="CompaniesCard">
-      <h3>My Companies</h3>
+      <h3>Your Companies</h3>
       {Companies.map((company) => {
 return (
           <div className="company">
