@@ -9,6 +9,8 @@ import { MdNotificationsNone } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import { Processes } from "../../Components/Processes/Processes";
 import { AddProcess } from "../../Components/AddProcess/AddProcess";
+import { Comments } from "../../Components/Comments/Comments";
+import { BiSend } from "react-icons/bi";
 
 export const PostPage = () => {
   const [activeTab, setActiveTab] = useState("Process");
@@ -22,7 +24,11 @@ export const PostPage = () => {
         <br />
         <span>Company: </span>
         <Project style={{ position: "sticky" }} data={ProjectData[0]} />
-        <button className="button" id= "process-bt" onClick={() => setModalOpened(true)}>
+        <button
+          className="button"
+          id="process-bt"
+          onClick={() => setModalOpened(true)}
+        >
           Add Process
         </button>
         <AddProcess modalOpened={modalOpened} setModalOpened={setModalOpened} />
@@ -52,6 +58,15 @@ export const PostPage = () => {
         </div>
         <div className="cp-right">
           {activeTab === "Process" && <Processes />}
+          {activeTab === "Comments" && (
+            <div>
+              <div className="create-comment">
+                <input type="text" placeholder="Post a comment" />
+                <BiSend style={{ fontSize: "23px" }} />
+              </div>
+              <Comments />
+            </div>
+          )}
         </div>
       </div>
     </div>

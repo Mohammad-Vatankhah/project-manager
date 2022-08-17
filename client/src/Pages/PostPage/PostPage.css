@@ -41,3 +41,24 @@
     width: 100%;
     height: 3rem;
 }
+
+.create-comment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-comment input {
+    border: none;
+    outline: none;
+    background-color: var(--inputColor);
+    height: 2.5rem;
+    border-radius: 10px;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.create-comment svg {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
