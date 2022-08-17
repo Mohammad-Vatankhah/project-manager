@@ -44,6 +44,7 @@ const Project = (data) => {
         </span>
         <span> {data.data.desc}</span>
       </div>
+        <span style={{ color: "var(--gray)", fontSize: "12px",}}>{data.data.date}</span>
     </div>
   );
 };
