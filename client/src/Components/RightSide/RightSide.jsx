@@ -5,10 +5,15 @@ import { FiSettings } from "react-icons/fi";
 import { MdNotificationsNone } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import TrendCard from "../TrendCard/TrendCard";
+import { useState } from "react";
 
 const RightSide = () => {
   const iconStyle = { fontSize: 30, cursor: "pointer" };
-  const iconStyleActive = { fontSize: 30, cursor: "pointer", color: "var(--blue)" };
+  const iconStyleActive = {
+    fontSize: 30,
+    cursor: "pointer",
+    color: "var(--blue)",
+  };
   return (
     <div className="RightSide">
       <div className="navIcons">
@@ -18,7 +23,6 @@ const RightSide = () => {
         <BiMessageDetail style={iconStyle} />
       </div>
       <TrendCard />
-      <button className="button" id="r-button">Share</button>
     </div>
   );
 };
