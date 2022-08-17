@@ -8,15 +8,24 @@ import { FiSettings } from "react-icons/fi";
 import { MdNotificationsNone } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import { Processes } from "../../Components/Processes/Processes";
+import { AddProcess } from "../../Components/AddProcess/AddProcess";
 
 export const PostPage = () => {
   const [activeTab, setActiveTab] = useState("Process");
+  const [modalOpened, setModalOpened] = useState(false);
 
   const iconStyle = { fontSize: 30, cursor: "pointer" };
   return (
     <div className="PostPage">
       <div className="left">
-        <Project data={ProjectData[0]} />
+        <span>Employees: </span>
+        <br />
+        <span>Company: </span>
+        <Project style={{ position: "sticky" }} data={ProjectData[0]} />
+        <button className="button" id= "process-bt" onClick={() => setModalOpened(true)}>
+          Add Process
+        </button>
+        <AddProcess modalOpened={modalOpened} setModalOpened={setModalOpened} />
       </div>
       <div className="right">
         <div className="navIcons">
