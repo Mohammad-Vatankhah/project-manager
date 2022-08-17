@@ -1,13 +1,13 @@
 .PostPage {
-    position: relative;
-    display: grid;
-    grid-template-columns: 45rem auto;
-    gap: 1rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 45rem auto;
+  gap: 1rem;
 }
 
-.navIcons{
-    display: flex;
-    justify-content: space-around;
+.navIcons {
+  display: flex;
+  justify-content: space-around;
 }
 
 .buttons {
@@ -19,46 +19,54 @@
 }
 
 #p-button {
-    border-color: var(--blue);
-    border-radius: 10px;
-    height: 2rem;
-    width: 6rem;
+  border-color: var(--blue);
+  border-radius: 10px;
+  height: 2rem;
+  width: 6rem;
 }
 
 .active {
-    background-color: var(--blue);
-    border: none;
-    color: white;
+  background-color: var(--blue);
+  border: none;
+  color: white;
 }
 
 .cp-right {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #process-bt {
-    margin-top: 30px;
-    width: 100%;
-    height: 3rem;
+  margin-top: 30px;
+  width: 84%;
+  height: 3rem;
+  margin-bottom: 20px;
 }
 
-.create-comment{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.processes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-comment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .create-comment input {
-    border: none;
-    outline: none;
-    background-color: var(--inputColor);
-    height: 2.5rem;
-    border-radius: 10px;
-    width: 80%;
-    margin-bottom: 20px;
+  border: none;
+  outline: none;
+  background-color: var(--inputColor);
+  height: 2.5rem;
+  border-radius: 10px;
+  width: 80%;
+  margin-bottom: 20px;
 }
 
 .create-comment svg {
-    margin-bottom: 20px;
-    cursor: pointer;
+  margin-bottom: 20px;
+  cursor: pointer;
 }

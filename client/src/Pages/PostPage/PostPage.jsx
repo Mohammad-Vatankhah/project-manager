@@ -24,13 +24,6 @@ export const PostPage = () => {
         <br />
         <span>Company: </span>
         <Project style={{ position: "sticky" }} data={ProjectData[0]} />
-        <button
-          className="button"
-          id="process-bt"
-          onClick={() => setModalOpened(true)}
-        >
-          Add Process
-        </button>
         <AddProcess modalOpened={modalOpened} setModalOpened={setModalOpened} />
       </div>
       <div className="right">
@@ -57,7 +50,18 @@ export const PostPage = () => {
           </button>
         </div>
         <div className="cp-right">
-          {activeTab === "Process" && <Processes />}
+          {activeTab === "Process" && (
+            <div className="processes">
+              <button
+                className="button"
+                id="process-bt"
+                onClick={() => setModalOpened(true)}
+              >
+                Add Process
+              </button>
+              <Processes />
+            </div>
+          )}
           {activeTab === "Comments" && (
             <div>
               <div className="create-comment">
