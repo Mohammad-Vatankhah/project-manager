@@ -5,7 +5,6 @@ import { FiSettings } from "react-icons/fi";
 import { MdNotificationsNone } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import TrendCard from "../TrendCard/TrendCard";
-import { useState } from "react";
 
 const RightSide = () => {
   const iconStyle = { fontSize: 30, cursor: "pointer" };
