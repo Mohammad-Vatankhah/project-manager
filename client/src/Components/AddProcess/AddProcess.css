@@ -1,0 +1,23 @@
+.infoForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.desc {
+  background-color: var(--inputColor);
+  border: none;
+  outline: none;
+  width: 85%;
+  height: 15rem;
+  border-radius: 10px;
+}
+
+.infoForm input {
+    margin-top: 10px;
+}
+
+.infoForm span{
+    margin-right: 10px;
+}
