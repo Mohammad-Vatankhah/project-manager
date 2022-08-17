@@ -1,0 +1,37 @@
+.PostPage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 45rem auto;
+    gap: 1rem;
+}
+
+.navIcons{
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  margin-top: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#p-button {
+    border-color: var(--blue);
+    border-radius: 10px;
+    height: 2rem;
+    width: 6rem;
+}
+
+.active {
+    background-color: var(--blue);
+    border: none;
+    color: white;
+}
+
+.cp-right {
+    display: flex;
+    flex-direction: column;
+}
