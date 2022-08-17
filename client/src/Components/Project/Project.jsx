@@ -6,7 +6,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
 
 const Project = (data) => {
-  const likeStyle = { fontSize: 30, color: "orange", cursor: "pointer" }
+  const likeStyle = { fontSize: 30, color: "var(--blue)", cursor: "pointer" }
   return (
     <div className="Project">
       <img src={data.data.img} alt="" />
@@ -23,7 +23,7 @@ const Project = (data) => {
         <FaRegCommentAlt
           style={{
             fontSize: 25,
-            color: "orange",
+            color: "var(--blue)",
             marginLeft: "10px",
             cursor: "pointer",
           }}
@@ -31,7 +31,7 @@ const Project = (data) => {
         <FiSend
           style={{
             fontSize: 30,
-            color: "orange",
+            color: "var(--blue)",
             marginLeft: "10px",
             cursor: "pointer",
           }}

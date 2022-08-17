@@ -17,7 +17,7 @@ export const InfoCard = () => {
             <span>Ardakan</span>
         </div>
         <div className="info">
-            <span><b>Works at: </b></span>
+            <span><b>Company: </b></span>
             <span>No where</span>
         </div>
         <button className='button' id= "logout-button">Log Out</button>

@@ -8,7 +8,7 @@ import TrendCard from "../TrendCard/TrendCard";
 
 const RightSide = () => {
   const iconStyle = { fontSize: 30, cursor: "pointer" };
-  const iconStyleActive = { fontSize: 30, cursor: "pointer", color: "orange" };
+  const iconStyleActive = { fontSize: 30, cursor: "pointer", color: "var(--blue)" };
   return (
     <div className="RightSide">
       <div className="navIcons">
