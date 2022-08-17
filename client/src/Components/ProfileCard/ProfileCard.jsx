@@ -35,7 +35,7 @@ const ProfileCard = () => {
               <div className="vl"></div>
               <div className="follow">
                 <span>3</span>
-                <span>Posts</span>
+                <span>Projects</span>
               </div>
             </>
           )}
