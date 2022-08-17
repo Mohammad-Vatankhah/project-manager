@@ -1,3 +1,15 @@
+.cp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CreateProject {
+  position: relative;
+  border-radius: 1.5rem;
+  width: 50%;
+  background-color: var(--cardColor);
+}
 .CreateProject h1 {
   display: flex;
   justify-content: center;
