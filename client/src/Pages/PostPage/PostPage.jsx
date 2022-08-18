@@ -66,7 +66,7 @@ export const PostPage = () => {
             <div>
               <div className="create-comment">
                 <input type="text" placeholder="Post a comment" />
-                <BiSend style={{ fontSize: "23px" }} />
+                <BiSend style={{ fontSize: "33px", color: "var(--blue)" }} />
               </div>
               <Comments />
             </div>
