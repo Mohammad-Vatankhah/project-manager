@@ -10,7 +10,7 @@ export const CompanyInfoCard = () => {
   return (
     <div style={{marginTop: "15px"}} className="CompanyInfoCard InfoCard">
       <div className="infoHead">
-        <h4>Your Info</h4>
+        <h4>Company Info</h4>
         <UilPen
           width="2rem"
           height="1.2rem"

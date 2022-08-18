@@ -6,45 +6,35 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
 
 const Project = (data) => {
-  const likeStyle = { fontSize: 30, color: "var(--blue)", cursor: "pointer" }
+  const likeStyle = { fontSize: 30, color: "var(--blue)", cursor: "pointer" };
   return (
     <div className="Project">
       <img src={data.data.img} alt="" />
       <div className="projectReaction">
         {data.data.liked ? (
-          <AiFillHeart
-            style={likeStyle}
-          />
+          <AiFillHeart style={likeStyle} />
         ) : (
-          <AiOutlineHeart
-            style={likeStyle}
-          />
+          <AiOutlineHeart style={likeStyle} />
         )}
-        <FaRegCommentAlt
-          style={{
-            fontSize: 25,
-            color: "var(--blue)",
-            marginLeft: "10px",
-            cursor: "pointer",
-          }}
-        />
-        <FiSend
-          style={{
-            fontSize: 30,
-            color: "var(--blue)",
-            marginLeft: "10px",
-            cursor: "pointer",
-          }}
-        />
+        <button
+          className="button"
+          style={{ width: "6rem", height: "2rem", marginLeft: "10px" }}
+        >
+          View Project
+        </button>
       </div>
-      <span style={{ color: "var(--gray)", fontSize: "12px"}}>{data.data.likes} likes</span>
+      <span style={{ color: "var(--gray)", fontSize: "12px" }}>
+        {data.data.likes} likes
+      </span>
       <div className="detail">
         <span>
           <b>{data.data.name}:</b>
         </span>
         <span> {data.data.desc}</span>
       </div>
-        <span style={{ color: "var(--gray)", fontSize: "12px",}}>{data.data.date}</span>
+      <span style={{ color: "var(--gray)", fontSize: "12px" }}>
+        {data.data.date}
+      </span>
     </div>
   );
 };
