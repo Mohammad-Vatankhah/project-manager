@@ -1,0 +1,87 @@
+.CompanyDetails {
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 1rem;
+    overflow-x: clip;
+    background: var(--cardColor);
+  }
+  
+  .companyImages {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .companyImages img:nth-of-type(1) {
+    width: 100%;
+  }
+  
+  .companyImages img:nth-of-type(2) {
+    width: 6rem;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -3rem;
+    box-shadow: var(--profileShadow);
+  }
+  
+  .companyName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 10px;
+  }
+  
+  .companyName span {
+    font-weight: bold;
+  }
+
+  .companyStatus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .companyStatus hr {
+    width: 85%;
+    color: 1px solid var(--hrColor);
+  }
+  
+  .companyStatus > div {
+    display: flex;
+    gap: 1rem;
+    width: 80%;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .status span:nth-of-type(1) {
+    font-weight: bold;
+  }
+  
+  .status span:nth-of-type(2) {
+    color: var(--gray);
+    font-size: 13px;
+  }
+  
+  .CompanyDetails>span {
+      font-weight: bold;
+      color: orange;
+      align-self: center;
+      margin-bottom: 1rem;
+      cursor: pointer;
+  }
