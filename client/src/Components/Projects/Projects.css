@@ -1,5 +1,7 @@
 .Projects {
     display: flex;
     flex-direction: column;
+    max-height: 100vh;
     gap: 1rem;
+    overflow: scroll;
 }
