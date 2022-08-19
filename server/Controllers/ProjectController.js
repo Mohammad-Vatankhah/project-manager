@@ -77,3 +77,31 @@ export const likeProject = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// add process
+export const addProcess = async (req, res) => {
+  const projectId = req.params.id;
+  const { currentUserId, image, desc } = req.body;
+  try {
+    const project = await ProjectModel.findById(projectId);
+    if (
+      project.employees.includes(currentUserId)
+    ) {
+      console.log(process);
+      await project.updateOne({
+        $push: {
+          process: {
+            employee: currentUserId,
+            image: image,
+            desc: desc,
+          },
+        },
+      });
+      res.status(200).json("Process adeed!");
+    } else {
+      res.status(403).json("Action forbidden");
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
