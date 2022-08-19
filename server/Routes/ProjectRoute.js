@@ -2,6 +2,7 @@ import express from "express";
 import {
   addProcess,
   createProject,
+  deleteProcess,
   deleteProject,
   getProject,
   likeProject,
@@ -16,4 +17,5 @@ router.put("/:id/updateProject", updateProject);
 router.delete("/:id/deleteProject", deleteProject);
 router.put("/:id/likeProject", likeProject);
 router.put("/:id/addProcess", addProcess);
+router.delete("/:id/deleteProcess", deleteProcess);
 export default router;
