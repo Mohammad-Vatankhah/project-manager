@@ -1,5 +1,5 @@
 import UserModel from "../Models/userModel.js";
-
+import bcrypt from "bcrypt";
 // get user from database
 
 export const getUser = async (req, res) => {
@@ -27,6 +27,12 @@ export const updateUser = async (req, res) => {
 
   if (id === currentUserId || currentUserAdminStatus) {
     try {
+      if (password) {
+        // securing password
+        const salt = await bcrypt.genSalt(10);
+        req.body.password = await bcrypt.hash(password, salt);
+      }
+
       const user = await UserModel.findByIdAndUpdate(id, req.body, {
         new: true,
       });
@@ -34,5 +40,9 @@ export const updateUser = async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
+  } else {
+    res
+      .status(403)
+      .json("Access Denied! you can only update your own profile.");
   }
 };
