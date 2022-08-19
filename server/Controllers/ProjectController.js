@@ -59,3 +59,21 @@ export const deleteProject = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// like/dislike a project
+export const likeProject = async (req, res) => {
+  const projectId = req.params.id;
+  const { currentUserId } = req.body;
+  try {
+    const project = await ProjectModel.findById(projectId);
+    if (!project.likes.includes(currentUserId)) {
+      await project.updateOne({ $push: { likes: currentUserId } });
+      res.status(200).json("Project liked!");
+    } else {
+      await project.updateOne({ $pull: { likes: currentUserId } });
+      res.status(200).json("Project disliked!");
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
