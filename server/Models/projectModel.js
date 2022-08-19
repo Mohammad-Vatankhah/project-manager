@@ -19,4 +19,4 @@ const ProjectSchema = mongoose.Schema(
 );
 
 const ProjectModel = mongoose.model("Projects", ProjectSchema);
-export default UserModel;
+export default ProjectModel;
