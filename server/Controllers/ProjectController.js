@@ -5,7 +5,7 @@ export const createProject = async (req, res) => {
   const newProject = new ProjectModel(req.body);
   try {
     await newProject.save();
-    res.status(200).json("Post created!");
+    res.status(200).json("Project created!");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -19,7 +19,7 @@ export const getProject = async (req, res) => {
     if (project) {
       res.status(200).json(project);
     } else {
-      res.status(404).json("No such post exists");
+      res.status(404).json("No such project exists");
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -84,10 +84,7 @@ export const addProcess = async (req, res) => {
   const { currentUserId, image, desc } = req.body;
   try {
     const project = await ProjectModel.findById(projectId);
-    if (
-      project.employees.includes(currentUserId)
-    ) {
-      console.log(process);
+    if (project.employees.includes(currentUserId)) {
       await project.updateOne({
         $push: {
           process: {
@@ -100,6 +97,33 @@ export const addProcess = async (req, res) => {
       res.status(200).json("Process adeed!");
     } else {
       res.status(403).json("Action forbidden");
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// delete process
+export const deleteProcess = async (req, res) => {
+  const projectId = req.params.id;
+  const { currentUserId, processId } = req.body;
+
+  try {
+    const project = await ProjectModel.findById(projectId);
+    let process = null;
+    project.process.map((p) => {
+      if (p.id === processId) {
+        process = p;
+      }
+    });
+    if (
+      currentUserId === project.publisher ||
+      currentUserId === process.employee
+    ) {
+      await project.updateOne({ $pull: { process: process } });
+      res.status(200).json("Process deleted!")
+    } else {
+        res.status(403).json("Action forbidden.")
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
