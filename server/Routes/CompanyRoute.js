@@ -4,6 +4,7 @@ import {
   createCompany,
   deleteCompany,
   getCompany,
+  removeEmployee,
   updateCompany,
 } from "../Controllers/CompanyController.js";
 
@@ -14,4 +15,5 @@ router.get("/:id/getCompany", getCompany);
 router.put("/:id/updateCompany", updateCompany);
 router.delete("/:id/deleteCompany", deleteCompany);
 router.put("/:id/addEmployee", addEmployee);
+router.put("/:id/removeEmployee", removeEmployee);
 export default router;
