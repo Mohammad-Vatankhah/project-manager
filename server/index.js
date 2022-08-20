@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import AuthRoute from "./Routes/AuthRoute.js";
 import UserRoute from "./Routes/UserRoute.js";
 import ProjectRoute from "./Routes/ProjectRoute.js";
+import CompanyRoute from "./Routes/CompanyRoute.js"
 
 // Router
 
@@ -33,3 +34,4 @@ mongoose
 app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/project", ProjectRoute);
+app.use("/company", CompanyRoute)
