@@ -123,7 +123,7 @@ export const deleteProcess = async (req, res) => {
       await project.updateOne({ $pull: { process: process } });
       res.status(200).json("Process deleted!");
     } else {
-      res.status(403).json("Action forbidden.");
+      res.status(403).json("You cannot delete others' process.");
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -145,10 +145,32 @@ export const addComment = async (req, res) => {
           },
         },
       });
-      res.status(200).json("Comment added!")
+      res.status(200).json("Comment added!");
+    } else {
+      res.status(403).json("Comment should have a description.");
     }
-    else {
-      res.status(403).json("Comment should have a description.")
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// delete comment
+export const deleteComment = async (req, res) => {
+  const projectId = req.params.id;
+  const { currentUserId, commentId } = req.body;
+  try {
+    const project = await ProjectModel.findById(projectId);
+    let comment = null;
+    project.comments.map((c) => {
+      if (c.id === commentId) {
+        comment = c;
+      }
+    });
+    if (currentUserId === comment.userId) {
+      await project.updateOne({ $pull: { comments: comment } });
+      res.status(200).json("Comment deleted!");
+    } else {
+      res.status(403).json("You cannot delete others' comments.");
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
