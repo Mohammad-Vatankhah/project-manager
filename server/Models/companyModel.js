@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const CompanySchema = mongoose.Schema(
   {
+    owner: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
