@@ -125,11 +125,7 @@ export const removeEmployee = async (req, res) => {
         .status(403)
         .json("You can not remove yourself from your own company!");
     } else if (company.owner === currentUserId) {
-      await CompanyModel.findByIdAndUpdate(
-        id,
-        { $pull: { employees: employees } },
-        { new: true }
-      );
+      await company.updateOne({$pullAll: {employees:employees}})
       res.status(200).json("Employees removed!");
     } else {
       res
