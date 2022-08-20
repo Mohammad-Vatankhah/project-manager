@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  addComment,
   addProcess,
   createProject,
   deleteProcess,
@@ -18,4 +19,5 @@ router.delete("/:id/deleteProject", deleteProject);
 router.put("/:id/likeProject", likeProject);
 router.put("/:id/addProcess", addProcess);
 router.delete("/:id/deleteProcess", deleteProcess);
+router.put("/:id/addComment", addComment);
 export default router;
