@@ -121,9 +121,34 @@ export const deleteProcess = async (req, res) => {
       currentUserId === process.employee
     ) {
       await project.updateOne({ $pull: { process: process } });
-      res.status(200).json("Process deleted!")
+      res.status(200).json("Process deleted!");
     } else {
-        res.status(403).json("Action forbidden.")
+      res.status(403).json("Action forbidden.");
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// add comment
+export const addComment = async (req, res) => {
+  const projectId = req.params.id;
+  const { userId, desc } = req.body;
+  try {
+    if (userId !== undefined && desc.length !== 0) {
+      const project = await ProjectModel.findById(projectId);
+      await project.updateOne({
+        $push: {
+          comments: {
+            userId: userId,
+            desc: desc,
+          },
+        },
+      });
+      res.status(200).json("Comment added!")
+    }
+    else {
+      res.status(403).json("Comment should have a description.")
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
