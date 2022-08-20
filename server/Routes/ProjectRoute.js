@@ -21,5 +21,5 @@ router.put("/:id/likeProject", likeProject);
 router.put("/:id/addProcess", addProcess);
 router.delete("/:id/deleteProcess", deleteProcess);
 router.put("/:id/addComment", addComment);
-router.put("/:id/deleteComment", deleteComment);
+router.delete("/:id/deleteComment", deleteComment);
 export default router;
