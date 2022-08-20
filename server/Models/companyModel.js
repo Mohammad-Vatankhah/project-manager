@@ -13,6 +13,7 @@ const CompanySchema = mongoose.Schema(
     companyId: {
       type: String,
       required: true,
+      unique: true,
     },
     contactNumber: {
       type: String,
@@ -25,6 +26,7 @@ const CompanySchema = mongoose.Schema(
     Email: {
       type: String,
       required: true,
+      unique: true,
     },
     profilePicture: String,
     coverPicture: String,
