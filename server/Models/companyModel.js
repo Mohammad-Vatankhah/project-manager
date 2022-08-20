@@ -28,6 +28,7 @@ const CompanySchema = mongoose.Schema(
     },
     profilePicture: String,
     coverPicture: String,
+    employees: [String],
   },
   { timestamps: true }
 );
