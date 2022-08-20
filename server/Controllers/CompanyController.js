@@ -34,6 +34,7 @@ export const updateCompany = async (req, res) => {
   const id = req.params.id;
   const {
     currentUserId,
+    currentUserAdminStatus,
     owner,
     name,
     companyId,
@@ -45,7 +46,7 @@ export const updateCompany = async (req, res) => {
   } = req.body;
   try {
     const user = await UserModel.findById(currentUserId);
-    if (user.companies.includes(id)) {
+    if (user.companies.includes(id) || currentUserAdminStatus) {
       const company = await CompanyModel.findByIdAndUpdate(
         id,
         {
@@ -65,6 +66,24 @@ export const updateCompany = async (req, res) => {
       res
         .status(403)
         .json("Access Denied! You can only edit your own companies!");
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// delete company
+export const deleteCompany = async (req, res) => {
+  const id = req.params.id;
+  const { currentUserId, currentUserAdminStatus } = req.body;
+  try {
+    const user = await UserModel.findById(currentUserId);
+    if (user.companies.includes(id) || currentUserAdminStatus) {
+      await user.updateOne({ $pull: { companies: id } });
+      await CompanyModel.findByIdAndDelete(id);
+      res.status(200).json("Company deleted successfully!");
+    } else {
+        res.status(403).json("Access Denied! you can only delete your own companies!")
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
