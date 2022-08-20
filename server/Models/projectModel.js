@@ -27,7 +27,6 @@ const CommentSchema = mongoose.Schema(
   }
 );
 
-
 const ProjectSchema = mongoose.Schema(
   {
     publisher: {
@@ -43,13 +42,12 @@ const ProjectSchema = mongoose.Schema(
     },
     process: [ProcessSchema],
     comments: [CommentSchema],
+    company: String,
   },
   {
     timestamps: true,
   }
-  );
-  
-  const ProjectModel = mongoose.model("Projects", ProjectSchema);
-  export default ProjectModel;
-  
-  
+);
+
+const ProjectModel = mongoose.model("Projects", ProjectSchema);
+export default ProjectModel;
