@@ -3,6 +3,7 @@ import {
   addComment,
   addProcess,
   createProject,
+  deleteComment,
   deleteProcess,
   deleteProject,
   getProject,
@@ -20,4 +21,5 @@ router.put("/:id/likeProject", likeProject);
 router.put("/:id/addProcess", addProcess);
 router.delete("/:id/deleteProcess", deleteProcess);
 router.put("/:id/addComment", addComment);
+router.put("/:id/deleteComment", deleteComment);
 export default router;
