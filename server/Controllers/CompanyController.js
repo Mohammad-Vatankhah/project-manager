@@ -32,32 +32,14 @@ export const getCompany = async (req, res) => {
 // update company
 export const updateCompany = async (req, res) => {
   const id = req.params.id;
-  const {
-    currentUserId,
-    currentUserAdminStatus,
-    owner,
-    name,
-    companyId,
-    contactNumber,
-    address,
-    Email,
-    profilePicture,
-    coverPicture,
-  } = req.body;
+  const { currentUserId, currentUserAdminStatus, ...otherInfo } = req.body;
   try {
     const user = await UserModel.findById(currentUserId);
     if (user.companies.includes(id) || currentUserAdminStatus) {
       const company = await CompanyModel.findByIdAndUpdate(
         id,
         {
-          owner,
-          name,
-          companyId,
-          contactNumber,
-          address,
-          Email,
-          profilePicture,
-          coverPicture,
+          ...otherInfo,
         },
         { new: true }
       );
@@ -125,7 +107,7 @@ export const removeEmployee = async (req, res) => {
         .status(403)
         .json("You can not remove yourself from your own company!");
     } else if (company.owner === currentUserId) {
-      await company.updateOne({$pullAll: {employees:employees}})
+      await company.updateOne({ $pullAll: { employees: employees } });
       res.status(200).json("Employees removed!");
     } else {
       res
