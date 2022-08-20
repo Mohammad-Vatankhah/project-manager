@@ -1,11 +1,17 @@
 import ProjectModel from "../Models/projectModel.js";
+import UserModel from "../Models/userModel.js";
 
 // create new project
 export const createProject = async (req, res) => {
-  const newProject = new ProjectModel(req.body);
   try {
-    await newProject.save();
-    res.status(200).json("Project created!");
+    const user = await UserModel.findById(req.body.publisher);
+    if (user.companies.includes(req.body.company) || req.body.company === "") {
+      const newProject = new ProjectModel(req.body);
+      await newProject.save();
+      res.status(200).json("Project created!");
+    } else {
+      res.status(403).json("You can only add project to  your own company!");
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
