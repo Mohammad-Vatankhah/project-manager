@@ -92,3 +92,20 @@ export const deleteCompany = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// add employee
+export const addEmployee = async (req, res) => {
+  const id = req.params.id;
+  const { currentUserId, employees } = req.body;
+  try {
+    const company = await CompanyModel.findById(id);
+    if (company.owner === currentUserId) {
+      await company.updateOne({ $addToSet: { employees: employees } });
+      res.status(200).json("employee/employees added!")
+    } else {
+      res.status(403).json("Access Denied! you can only add employees to your own companies!")
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
