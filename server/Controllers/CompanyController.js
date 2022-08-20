@@ -28,3 +28,45 @@ export const getCompany = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// update company
+export const updateCompany = async (req, res) => {
+  const id = req.params.id;
+  const {
+    currentUserId,
+    owner,
+    name,
+    companyId,
+    contactNumber,
+    address,
+    Email,
+    profilePicture,
+    coverPicture,
+  } = req.body;
+  try {
+    const user = await UserModel.findById(currentUserId);
+    if (user.companies.includes(id)) {
+      const company = await CompanyModel.findByIdAndUpdate(
+        id,
+        {
+          owner,
+          name,
+          companyId,
+          contactNumber,
+          address,
+          Email,
+          profilePicture,
+          coverPicture,
+        },
+        { new: true }
+      );
+      res.status(200).json(company);
+    } else {
+      res
+        .status(403)
+        .json("Access Denied! You can only edit your own companies!");
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
