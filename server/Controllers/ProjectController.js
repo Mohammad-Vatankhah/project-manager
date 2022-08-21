@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import ProjectModel from "../Models/projectModel.js";
 import UserModel from "../Models/userModel.js";
 
@@ -178,6 +179,56 @@ export const deleteComment = async (req, res) => {
     } else {
       res.status(403).json("You cannot delete others' comments.");
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// get timeline posts
+export const getTimeLinePosts = async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const currentUserProjects = await ProjectModel.find({ publisher: userId });
+    const followingProjects = await UserModel.aggregate([
+      {
+        $match: {
+          _id: new mongoose.Types.ObjectId(userId),
+        },
+      },
+      {
+        $lookup: {
+          from: "projects",
+          localField: "followings",
+          foreignField: "employees",
+          as: "followingProjects",
+        },
+      },
+      {
+        $project: {
+          followingProjects: 1,
+          _id: 0,
+        },
+      },
+    ]);
+
+    // array of all projects (current user and his/her followings)
+    const projects = currentUserProjects.concat(
+      followingProjects[0].followingProjects
+    );
+    const uniqueProjects = [];
+    // remove duplicate projects
+    projects.map((element, index) => {
+      let id = element._id.toString();
+      if (uniqueProjects.includes(id)) {
+        projects.splice(index, 1);
+      }
+      uniqueProjects.push(id);
+    });
+    res.status(200).json(
+      projects.sort((a, b) => {
+        return b.createdAt - a.createdAt;
+      })
+    );
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
