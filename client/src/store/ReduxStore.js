@@ -4,7 +4,7 @@ import {
   compose,
 } from "redux";
 import thunk from "redux-thunk";
-import { reducers } from "../reducers";
+import { reducers } from "../reducers/index";
 
 function saveToLocalStorage(store) {
   try {
