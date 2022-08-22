@@ -14,3 +14,5 @@ const authReducer = (
       return state;
   }
 };
+
+export default authReducer;
