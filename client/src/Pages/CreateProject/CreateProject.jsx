@@ -5,7 +5,7 @@ import "./CreateProject.css";
 import { BsFillImageFill } from "react-icons/bs";
 import { UilTimes } from "@iconscout/react-unicons";
 
-const CreateProject = () => {
+export const CreateProject = () => {
   const [image, setImage] = useState(null);
   const imageRef = useRef();
   const [selectedCompany, setSelectedCompany] = useState("");
@@ -91,5 +91,3 @@ const CreateProject = () => {
     </div>
   );
 };
-
-export default CreateProject;
