@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { IoLogoSlack } from "react-icons/io";
-import { useDispatch } from "react-redux";
-import { login, signup } from "../../api/AuthRequest.js";
+import { useDispatch, useSelector } from "react-redux";
+import { login, signup } from "../../actions/AuthActions";
 import "./Auth.css";
 export const Auth = () => {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.authReducer.loading);
   const [isSignup, setIsSignup] = useState(true);
   const [data, setData] = useState({
     username: "",
@@ -17,7 +18,7 @@ export const Auth = () => {
   });
 
   const [confirmPass, setConfirmPass] = useState(true);
-
+  console.log(loading);
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -25,7 +26,7 @@ export const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignup) {
-      data.password !== data.confirmPassword
+      data.password === data.confirmPassword
         ? dispatch(signup(data))
         : setConfirmPass(false);
     } else {
@@ -143,8 +144,13 @@ export const Auth = () => {
               ? "Already have an account? Login."
               : "Don't have an account. Sign up."}
           </span>
-          <button className="button" id="infoButton" type="submit">
-            {isSignup ? "Sign Up" : "Login"}
+          <button
+            className="button"
+            id="infoButton"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "loading..." : isSignup ? "Sign Up" : "Login"}
           </button>
           <div></div>
         </form>
