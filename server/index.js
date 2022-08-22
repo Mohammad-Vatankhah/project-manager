@@ -2,10 +2,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import AuthRoute from "./Routes/AuthRoute.js";
 import UserRoute from "./Routes/UserRoute.js";
 import ProjectRoute from "./Routes/ProjectRoute.js";
-import CompanyRoute from "./Routes/CompanyRoute.js"
+import CompanyRoute from "./Routes/CompanyRoute.js";
 
 // Router
 
@@ -14,7 +15,7 @@ const app = express();
 // Middleware
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-
+app.use(cors());
 dotenv.config();
 
 mongoose
@@ -34,4 +35,4 @@ mongoose
 app.use("/auth", AuthRoute);
 app.use("/user", UserRoute);
 app.use("/project", ProjectRoute);
-app.use("/company", CompanyRoute)
+app.use("/company", CompanyRoute);
