@@ -15,7 +15,6 @@
   --location: #ef5757;
   --shedule: #e1ae4a;
   background-color: #f3f3f3;
-
 }
 
 .App {
@@ -48,6 +47,11 @@
   color: #2193b0;
   background: transparent;
   border: 2px solid #2193b0;
+}
+
+.button:disabled {
+  background: silver;
+  pointer-events: none;
 }
 
 ::-webkit-scrollbar {
