@@ -1,8 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { IoLogoSlack } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { login, signup } from "../../api/AuthRequest.js";
 import "./Auth.css";
 export const Auth = () => {
+  const dispatch = useDispatch();
   const [isSignup, setIsSignup] = useState(true);
   const [data, setData] = useState({
     username: "",
@@ -22,9 +25,11 @@ export const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignup) {
-      if (data.password !== data.confirmPassword) {
-        setConfirmPass(false);
-      }
+      data.password !== data.confirmPassword
+        ? dispatch(signup(data))
+        : setConfirmPass(false);
+    } else {
+      dispatch(login(data));
     }
   };
 
