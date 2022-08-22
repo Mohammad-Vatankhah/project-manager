@@ -3,7 +3,7 @@ import PostSide from '../../Components/PostSide/PostSide'
 import ProfileSide from '../../Components/ProfileSide/ProfileSide'
 import RightSide from '../../Components/RightSide/RightSide'
 import "./Home.css"
-const Home = () => {
+export const Home = () => {
   return (
     <div className='Home'>
         <ProfileSide />
@@ -12,5 +12,3 @@ const Home = () => {
     </div>
   )
 }
-
-export default Home
