@@ -1,6 +1,7 @@
 import "./App.css";
 import { Auth } from "./Pages/Auth/Auth";
 import { Home } from "./Pages/Home/Home";
+import { CreateProject } from "./Pages/CreateProject/CreateProject";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 function App() {
@@ -21,6 +22,10 @@ function App() {
         <Route
           path="/auth"
           element={user ? <Navigate to="../home" /> : <Auth />}
+        />
+        <Route
+          path="/createProject/:id"
+          element={user ? <CreateProject /> : <Navigate to="../auth" />}
         />
       </Routes>
     </div>
