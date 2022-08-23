@@ -6,8 +6,9 @@
 
 .CreateProject {
   position: relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
   border-radius: 1.5rem;
-  width: 50%;
   background-color: var(--cardColor);
   display: flex;
   flex-direction: column;
