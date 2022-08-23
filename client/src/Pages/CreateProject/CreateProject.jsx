@@ -8,8 +8,11 @@ import { UilTimes } from "@iconscout/react-unicons";
 import { MultiSelect } from "react-multi-select-component";
 
 import { useDispatch, useSelector } from "react-redux";
+import { uploadImage, uploadProject } from "../../actions/UploadAction";
+import { Navigate } from "react-router-dom";
 
 export const CreateProject = () => {
+  const dispatch = useDispatch();
   // get user data from authData
   const user = useSelector((state) => state.authReducer.authData.user);
   const [coWorkers, setCoWorkers] = useState([]);
@@ -26,6 +29,10 @@ export const CreateProject = () => {
       borderRadius: "10px",
     }),
   };
+
+  const uploading = useSelector((state) => state.projectReducer.uploading);
+  const uploaded = useSelector((state) => state.projectReducer.uploaded);
+
   // set options for company
   const animatedComponents = makeAnimated();
   const userCompanies = user.companies;
@@ -59,7 +66,6 @@ export const CreateProject = () => {
       coWorkers.map((c, i) => {
         employees[++i] = c.value;
       });
-      console.log(employees);
     }
     const newProject = {
       publisher: user._id,
@@ -71,12 +77,21 @@ export const CreateProject = () => {
       const data = new FormData();
       const filename = Date.now() + image.name;
       data.append("name", filename);
-      data.append("image", image);
+      data.append("file", image);
       newProject.image = filename;
-      console.log(newProject);
+      console.log(data);
+      try {
+        dispatch(uploadImage(data));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    try {
+      dispatch(uploadProject(newProject));
+    } catch (error) {
+      console.log(error);
     }
   };
-  console.log(coWorkers);
   return (
     <div className="cp">
       <div className="CreateProject">
@@ -145,8 +160,13 @@ export const CreateProject = () => {
             </div>
           )}
         </div>
-        <button className="button share-button" onClick={handleShare}>
-          Share
+        <button
+          className="button share-button"
+          onClick={handleShare}
+          disabled={uploading}
+        >
+          {uploading ? "Uploading" : "Share"}
+          {uploaded && <Navigate to={"../home"} />}
         </button>
       </div>
     </div>
