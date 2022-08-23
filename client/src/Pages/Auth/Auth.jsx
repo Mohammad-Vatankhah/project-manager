@@ -18,7 +18,6 @@ export const Auth = () => {
   });
 
   const [confirmPass, setConfirmPass] = useState(true);
-  console.log(loading);
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
