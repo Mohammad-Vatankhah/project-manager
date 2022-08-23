@@ -29,6 +29,17 @@ export const getCompany = async (req, res) => {
   }
 };
 
+//get all companies of a user
+export const getUserCompanies = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const companies = await CompanyModel.find({ owner: id });
+    res.status(200).json(companies);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // update company
 export const updateCompany = async (req, res) => {
   const id = req.params.id;
