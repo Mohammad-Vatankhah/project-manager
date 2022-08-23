@@ -9,7 +9,7 @@ export const createProject = async (req, res) => {
     if (user.companies.includes(req.body.company) || req.body.company === "") {
       const newProject = new ProjectModel(req.body);
       await newProject.save();
-      res.status(200).json("Project created!");
+      res.status(200).json(newProject);
     } else {
       res.status(403).json("You can only add project to  your own company!");
     }
