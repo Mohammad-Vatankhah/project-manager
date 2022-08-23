@@ -87,6 +87,7 @@ export const CreateProject = () => {
             </div>
           )}
         </div>
+        <button className="button share-button">Share</button>
       </div>
     </div>
   );

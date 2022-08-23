@@ -9,6 +9,10 @@
   border-radius: 1.5rem;
   width: 50%;
   background-color: var(--cardColor);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .CreateProject h1 {
   display: flex;
@@ -108,4 +112,11 @@
   border-radius: 0.5rem;
   box-shadow: 10px 0 10px 0 rgba(0, 0, 0, 0.1);
   margin-right: 35px;
+}
+
+.share-button {
+  width: 5rem;
+  height: 2rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
