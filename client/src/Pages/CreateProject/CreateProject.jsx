@@ -1,15 +1,22 @@
 import React from "react";
 import { useState, useRef } from "react";
-import AsyncSelect from "react-select/async";
+import Select from "react-select";
 import "./CreateProject.css";
+import makeAnimated from "react-select/animated";
 import { BsFillImageFill } from "react-icons/bs";
 import { UilTimes } from "@iconscout/react-unicons";
+import { MultiSelect } from "react-multi-select-component";
+
+import { useDispatch, useSelector } from "react-redux";
 
 export const CreateProject = () => {
+  // get user data from authData
+  const user = useSelector((state) => state.authReducer.authData.user);
+  const [coWorkers, setCoWorkers] = useState([]);
   const [image, setImage] = useState(null);
   const imageRef = useRef();
+  const desc = useRef();
   const [selectedCompany, setSelectedCompany] = useState("");
-  const [selectedCoworkers, setSelectedCoworkers] = useState([]);
   const style = {
     control: (base) => ({
       ...base,
@@ -19,15 +26,57 @@ export const CreateProject = () => {
       borderRadius: "10px",
     }),
   };
+  // set options for company
+  const animatedComponents = makeAnimated();
+  const userCompanies = user.companies;
+  let companyOptions = [{ value: "", label: "Remove company" }];
+  userCompanies.length > 0 &&
+    userCompanies.map((c, i) => {
+      companyOptions[i + 1] = { value: c, label: c };
+    });
+  // set options for co-workers
+  let coWorkerOptions = [];
+  user.followings.length > 0 &&
+    user.followings.map((u, i) => {
+      coWorkerOptions[i + 1] = { value: u, label: u };
+    });
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
-      setImage({
-        image: URL.createObjectURL(img),
-      });
+      setImage(img);
     }
   };
+
+  const handleChange = (e) => {
+    setSelectedCompany(e.value);
+  };
+
+  const handleShare = (e) => {
+    e.preventDefault();
+    let employees = [user.username];
+    if (coWorkers.length > 0) {
+      coWorkers.map((c, i) => {
+        employees[++i] = c.value;
+      });
+      console.log(employees);
+    }
+    const newProject = {
+      publisher: user._id,
+      desc: desc.current.value,
+      employees: employees,
+      company: selectedCompany,
+    };
+    if (image) {
+      const data = new FormData();
+      const filename = Date.now() + image.name;
+      data.append("name", filename);
+      data.append("image", image);
+      newProject.image = filename;
+      console.log(newProject);
+    }
+  };
+  console.log(coWorkers);
   return (
     <div className="cp">
       <div className="CreateProject">
@@ -35,24 +84,33 @@ export const CreateProject = () => {
         <div className="inputs">
           <div className="line1">
             <input type="text" placeholder="Project Name" />
-            <AsyncSelect
+            <Select
+              options={companyOptions}
               value={selectedCompany}
               styles={style}
-              placeholder={"Company"}
+              placeholder={selectedCompany !== "" ? selectedCompany : "Company"}
               className="select"
-            ></AsyncSelect>
+              onChange={handleChange}
+              isSearchable={true}
+            ></Select>
           </div>
           <div className="line2">
-            <AsyncSelect
+            <MultiSelect
+              hasSelectAll={false}
               className="select-cw"
               isMulti
-              styles={style}
-              value={selectedCoworkers}
+              value={coWorkers}
               placeholder={"Co-Workers"}
-            ></AsyncSelect>
+              options={coWorkerOptions}
+              onChange={setCoWorkers}
+              components={animatedComponents}
+              isSearchable={true}
+            ></MultiSelect>
           </div>
           <div className="line3">
             <textarea
+              ref={desc}
+              required
               className="description"
               cols="30"
               rows="10"
@@ -83,11 +141,13 @@ export const CreateProject = () => {
                 }}
                 onClick={() => setImage(null)}
               />
-              <img src={image.image} alt="" />
+              <img src={URL.createObjectURL(image)} alt="" />
             </div>
           )}
         </div>
-        <button className="button share-button">Share</button>
+        <button className="button share-button" onClick={handleShare}>
+          Share
+        </button>
       </div>
     </div>
   );
