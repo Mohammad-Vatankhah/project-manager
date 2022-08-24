@@ -1,33 +1,51 @@
 import React from "react";
-import Cover from "../../img/cover.jpg";
-import Profile from "../../img/profileImg.jpg";
 import "./ProfileCard.css";
-
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const ProfileCard = () => {
-  const ProfilePage = true;
-
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  const ProfilePage = false;
+  const user = useSelector((state) => state.authReducer.authData.user);
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
-        <img src={Cover} alt="" />
-        <img src={Profile} alt="" />
+        <img
+          src={
+            user.coverPicture
+              ? serverPublic + user.coverPicture
+              : serverPublic + "defaultCover.jpg"
+          }
+          alt=""
+        />
+        <img
+          src={
+            user.coverPicture
+              ? serverPublic + user.coverPicture
+              : serverPublic + "defaultProfilePicture.jpg"
+          }
+          alt=""
+        />
       </div>
 
       <div className="ProfileName">
-        <span>First Lastname</span>
-        <span>title bio statu</span>
+        <span>{user.firstName + " " + user.lastName}</span>
+        {user.status ? (
+          <span>{user.status}</span>
+        ) : (
+          <span>@{user.username}</span>
+        )}
       </div>
 
       <div className="followStatus">
         <hr />
         <div>
           <div className="follow">
-            <span>20312</span>
+            <span>{user.followings.length}</span>
             <span>Followings</span>
           </div>
           <div className="vl"></div>
           <div className="follow">
-            <span>12345</span>
+            <span>{user.followers.length}</span>
             <span>Followers</span>
           </div>
           {ProfilePage && (
@@ -42,7 +60,13 @@ const ProfileCard = () => {
         </div>
         <hr />
       </div>
-      {ProfilePage ? "" : <span>My Profile</span>}
+      <Link
+        className="myProfile"
+        style={{ textDecoration: "none" }}
+        to={`/profile/${user._id}`}
+      >
+        {ProfilePage ? "" : <span>My Profile</span>}
+      </Link>
     </div>
   );
 };
