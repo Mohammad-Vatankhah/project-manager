@@ -83,7 +83,7 @@
     border-left: 2px solid var(--hrColor);
 }
 
-.ProfileCard>span {
+.myProfile {
     font-weight: bold;
     color: orange;
     align-self: center;
