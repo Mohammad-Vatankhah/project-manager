@@ -1,15 +1,15 @@
 import React from "react";
-import Select from "react-select";
+// import Select from "react-select";
 import "./LogoSearch.css";
 import { UilSearch } from "@iconscout/react-unicons";
-import { FaUserAlt } from "react-icons/fa";
-import { FaBuilding } from "react-icons/fa";
+// import { FaUserAlt } from "react-icons/fa";
+// import { FaBuilding } from "react-icons/fa";
 
 const LogoSearch = () => {
-  const customControlStyles = (base) => ({
-    height: 20,
-    minHeight: 20,
-  });
+  // const customControlStyles = (base) => ({
+  //   height: 20,
+  //   minHeight: 20,
+  // });
   // const options = [
   //   { value: "employee", label: <FaUserAlt color="#f99827" /> },
   //   { value: "company", label: <FaBuilding color="#f99827" /> },
