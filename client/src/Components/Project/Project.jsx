@@ -42,7 +42,6 @@ const Project = (data) => {
     " " +
     date.getFullYear()
   }`;
-  console.log(sDate);
   return (
     <div className="Project">
       {data.data.image && (
