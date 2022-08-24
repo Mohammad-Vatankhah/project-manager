@@ -13,7 +13,6 @@ export const ProjectReaction = (data) => {
   const [likes, setLikes] = useState(data1.data.likes.length);
   const handleLike = () => {
     setLiked((prev) => !prev);
-    console.log(user._id);
     likePost(data1.data._id, user._id);
     liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1);
   };
