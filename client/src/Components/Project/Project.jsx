@@ -1,40 +1,69 @@
 import React from "react";
 import "./Project.css";
-import { FaRegCommentAlt } from "react-icons/fa";
-import { AiFillHeart } from "react-icons/ai";
-import { AiOutlineHeart } from "react-icons/ai";
-import { FiSend } from "react-icons/fi";
+
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { ProjectReaction } from "../ProjectReaction/ProjectReaction";
+import { ProjectDetails } from "../ProjectDetails/ProjectDetails";
 
 const Project = (data) => {
-  const likeStyle = { fontSize: 30, color: "var(--blue)", cursor: "pointer" };
+  const user = useSelector((state) => state.authReducer.authData.user);
+
+  const date = new Date(data.data.createdAt);
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const sDate = `${
+    weekday[date.getDay()] +
+    ", " +
+    date.getDate() +
+    " " +
+    month[date.getMonth()] +
+    " " +
+    date.getFullYear()
+  }`;
+  console.log(sDate);
   return (
     <div className="Project">
-      <img src={data.data.img} alt="" />
-      <div className="projectReaction">
-        {data.data.liked ? (
-          <AiFillHeart style={likeStyle} />
-        ) : (
-          <AiOutlineHeart style={likeStyle} />
-        )}
-        <button
-          className="button"
-          style={{ width: "6rem", height: "2rem", marginLeft: "10px" }}
-        >
-          View Project
-        </button>
-      </div>
-      <span style={{ color: "var(--gray)", fontSize: "12px" }}>
-        {data.data.likes} likes
-      </span>
-      <div className="detail">
-        <span>
-          <b>{data.data.name}:</b>
-        </span>
-        <span> {data.data.desc}</span>
-      </div>
-      <span style={{ color: "var(--gray)", fontSize: "12px" }}>
-        {data.data.date}
-      </span>
+      {data.data.image && (
+        <img
+          src={process.env.REACT_APP_PUBLIC_FOLDER + data.data.image}
+          alt=""
+        />
+      )}
+      {data.data.image ? (
+        <div>
+          <ProjectReaction data={data} />
+          <ProjectDetails data={data} img={true} />
+        </div>
+      ) : (
+        <div>
+          <ProjectDetails data={data} img={false} />
+          <ProjectReaction data={data} />
+        </div>
+      )}
+
+      <span style={{ color: "var(--gray)", fontSize: "12px" }}>{sDate}</span>
     </div>
   );
 };
