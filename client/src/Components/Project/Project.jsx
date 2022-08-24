@@ -1,13 +1,10 @@
 import React from "react";
 import "./Project.css";
 
-import { useSelector } from "react-redux";
-import { useState } from "react";
 import { ProjectReaction } from "../ProjectReaction/ProjectReaction";
 import { ProjectDetails } from "../ProjectDetails/ProjectDetails";
 
 const Project = (data) => {
-  const user = useSelector((state) => state.authReducer.authData.user);
 
   const date = new Date(data.data.createdAt);
   const weekday = [
