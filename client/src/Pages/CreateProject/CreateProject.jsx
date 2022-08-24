@@ -38,15 +38,15 @@ export const CreateProject = () => {
   const userCompanies = user.companies;
   let companyOptions = [{ value: "", label: "Remove company" }];
   userCompanies.length > 0 &&
-    userCompanies.map((c, i) => {
-      companyOptions[i + 1] = { value: c, label: c };
-    });
+    userCompanies.map(
+      (c, i) => (companyOptions[i + 1] = { value: c, label: c })
+    );
   // set options for co-workers
   let coWorkerOptions = [];
   user.followings.length > 0 &&
-    user.followings.map((u, i) => {
-      coWorkerOptions[i + 1] = { value: u, label: u };
-    });
+    user.followings.map(
+      (u, i) => (coWorkerOptions[i + 1] = { value: u, label: u })
+    );
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -63,9 +63,7 @@ export const CreateProject = () => {
     e.preventDefault();
     let employees = [user.username];
     if (coWorkers.length > 0) {
-      coWorkers.map((c, i) => {
-        employees[++i] = c.value;
-      });
+      coWorkers.map((c, i) => (employees[++i] = c.value));
     }
     const newProject = {
       publisher: user._id,
