@@ -49,7 +49,7 @@ export const CompanyModal = (props) => {
           />
         </div>
         <div>
-          <input type="text" className="infoInput" placeholder="E-mail" />
+          <input type="email" className="infoInput" placeholder="E-mail" />
         </div>
         <div>
           Profile Image
