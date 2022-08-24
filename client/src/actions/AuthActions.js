@@ -20,3 +20,8 @@ export const signup = (formData) => async (dispatch) => {
     dispatch({ type: "AUTH_FAIL" });
   }
 };
+
+
+export const logOut = () => async(dispatch) => {
+  dispatch({type: "LOG_OUT"})
+}
