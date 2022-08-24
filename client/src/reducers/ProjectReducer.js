@@ -21,7 +21,18 @@ const projectReducer = (
       };
     case "UPLOAD_FAIL":
       return { ...state, error: true, uploading: false, uploaded: false };
-
+    case "RETRIEVING_START":
+      return { ...state, loading: true, error: false, uploaded: false };
+    case "RETRIEVING_SUCCESS":
+      return {
+        ...state,
+        project: action.data,
+        loading: false,
+        error: false,
+        uploaded: false,
+      };
+    case "RETRIEVING_FAIL":
+      return { ...state, loading: false, error: true, uploaded: false };
     default:
       return state;
   }
