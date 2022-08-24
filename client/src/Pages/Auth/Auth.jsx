@@ -94,7 +94,7 @@ export const Auth = () => {
           {isSignup && (
             <div>
               <input
-                type="text"
+                type="email"
                 className="infoInput"
                 name="Email"
                 placeholder="E-mail"
