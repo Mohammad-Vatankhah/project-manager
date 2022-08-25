@@ -1,9 +1,20 @@
 import "./User.css";
-import React from "react";
-
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { followUser, unfollowUser } from "../../actions/UserAction";
 export const User = ({ person }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.authReducer.authData.user);
+  const [following, setFollowing] = useState(
+    user.followings.includes(person.username)
+  );
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-
+  const handleFollow = () => {
+    following
+      ? dispatch(unfollowUser(person._id, person.username, user))
+      : dispatch(followUser(person._id, person.username, user));
+    setFollowing((prev) => !prev);
+  };
   return (
     <div className="User">
       <div>
@@ -21,8 +32,12 @@ export const User = ({ person }) => {
           <span>@{person.username}</span>
         </div>
       </div>
-      <button className="button" id="fc-button">
-        Follow
+      <button
+        className={following ? "button unfollow" : "button"}
+        id="fc-button"
+        onClick={handleFollow}
+      >
+        {following ? "Unfollow" : "Follow"}
       </button>
     </div>
   );
