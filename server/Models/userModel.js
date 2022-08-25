@@ -34,8 +34,8 @@ const UserSchema = mongoose.Schema(
       default: false,
     },
     companies: [String],
-    followers: [],
-    followings: [],
+    followers: [String],
+    followings: [String],
   },
   { timestamps: true }
 );
