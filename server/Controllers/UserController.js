@@ -1,5 +1,6 @@
 import UserModel from "../Models/userModel.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 // get user from database
 
 export const getUser = async (req, res) => {
@@ -22,10 +23,9 @@ export const getUser = async (req, res) => {
 // update a user
 
 export const updateUser = async (req, res) => {
-  const username = req.params.username;
-  const { currentUserUsername, currentUserAdminStatus, password } = req.body;
-
-  if (username === currentUserUsername || currentUserAdminStatus) {
+  const id = req.params.id;
+  const { _id, currentUserAdminStatus, password } = req.body;
+  if (id === _id || currentUserAdminStatus) {
     try {
       if (password) {
         // securing password
@@ -33,10 +33,15 @@ export const updateUser = async (req, res) => {
         req.body.password = await bcrypt.hash(password, salt);
       }
 
-      const user = await UserModel.findByIdAndUpdate(username, req.body, {
+      const user = await UserModel.findByIdAndUpdate(id, req.body, {
         new: true,
       });
-      res.status(200).json(user);
+      const token = jwt.sign(
+        { username: user.username, id: user._id },
+        process.env.JWT_KEY,
+        { expiresIn: "1h" }
+      );
+      res.status(200).json({ user, token });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
@@ -124,7 +129,9 @@ export const unfollowUser = async (req, res) => {
       const followingUser = await UserModel.findById(currentUserUsername);
 
       if (followUser.followers.includes(currentUserUsername)) {
-        await followUser.updateOne({ $pull: { followers: currentUserUsername } });
+        await followUser.updateOne({
+          $pull: { followers: currentUserUsername },
+        });
         await followingUser.updateOne({ $pull: { followings: username } });
         res.status(200).json("User unfollowed!");
       } else {
