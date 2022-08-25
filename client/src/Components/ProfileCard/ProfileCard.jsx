@@ -28,12 +28,9 @@ const ProfileCard = ({ location }) => {
       </div>
 
       <div className="ProfileName">
+        <span>@{user.username}</span>
         <span>{user.firstName + " " + user.lastName}</span>
-        {user.status ? (
-          <span>{user.status}</span>
-        ) : (
-          <span>@{user.username}</span>
-        )}
+        {user.status && <span>{user.status}</span>}
       </div>
 
       <div className="followStatus">
