@@ -18,6 +18,11 @@
 
 .ProfileImages img:nth-of-type(1) {
   width: 100%;
+  max-height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
 }
 
 .ProfileImages img:nth-of-type(2) {
@@ -79,14 +84,14 @@
 }
 
 .vl {
-    height: 150%;
-    border-left: 2px solid var(--hrColor);
+  height: 150%;
+  border-left: 2px solid var(--hrColor);
 }
 
 .myProfile {
-    font-weight: bold;
-    color: orange;
-    align-self: center;
-    margin-bottom: 1rem;
-    cursor: pointer;
+  font-weight: bold;
+  color: orange;
+  align-self: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
 }
