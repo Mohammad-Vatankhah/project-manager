@@ -1,4 +1,5 @@
 import express from "express";
+import authMidleWare from "../middleWare/authMidleWare.js";
 import {
   deleteUser,
   followUser,
@@ -10,9 +11,9 @@ import {
 
 const router = express.Router();
 router.get("/:id/get", getUser);
-router.put("/:id/update", updateUser);
-router.delete("/:id/delete", deleteUser);
-router.put("/:id/follow", followUser);
-router.put("/:id/unfollow", unfollowUser);
+router.put("/:id/update", authMidleWare, updateUser);
+router.delete("/:id/delete", authMidleWare, deleteUser);
+router.put("/:id/follow", authMidleWare, followUser);
+router.put("/:id/unfollow", authMidleWare, unfollowUser);
 router.get("/allUsers", getAllUsers);
 export default router;
