@@ -21,7 +21,7 @@ export const UserProfile = () => {
             Create new project
           </button>
         </Link>
-        <Projects location={"userProfile"} />
+        <Projects />
       </div>
       <RightSide />
     </div>
