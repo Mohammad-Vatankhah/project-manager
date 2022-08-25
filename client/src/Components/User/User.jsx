@@ -22,7 +22,7 @@ export const User = ({ person }) => {
           src={
             person.coverPicture
               ? serverPublic + person.profilePicture
-              : serverPublic + "defaultCover.jpg"
+              : serverPublic + "defaultProfilePicture.jpg"
           }
           alt=""
           className="followerImage"
