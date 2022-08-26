@@ -12,7 +12,7 @@ function ProfileModal(props) {
   const [formData, setFormData] = useState(other);
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
-  const { user } = useSelector((state) => state.authReducer.authData.user);
+  const user = useSelector((state) => state.authReducer.authData.user);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
