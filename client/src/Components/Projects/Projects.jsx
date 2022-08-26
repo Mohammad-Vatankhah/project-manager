@@ -23,7 +23,7 @@ const Projects = () => {
       {loading
         ? "Loading projects. Please wait..."
         : project.map((project, id) => {
-            return <Project data={project} id={id} />;
+            return <Project data={project} id={id} key={project._id} />;
           })}
     </div>
   );
