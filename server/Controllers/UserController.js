@@ -18,9 +18,9 @@ export const getAllUsers = async (req, res) => {
 
 // get user from database
 export const getUser = async (req, res) => {
-  const username = req.params.username;
+  const id = req.params.id;
   try {
-    const user = await UserModel.findById(username);
+    const user = await UserModel.findById(id);
 
     if (user) {
       // prevent getting password in get request
