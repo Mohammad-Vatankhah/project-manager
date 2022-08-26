@@ -2,6 +2,7 @@ import "./User.css";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { followUser, unfollowUser } from "../../actions/UserAction";
+import { Link } from "react-router-dom";
 export const User = ({ person }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.authData.user);
@@ -29,7 +30,15 @@ export const User = ({ person }) => {
         />
         <div className="name">
           <span>{person.firstName + " " + person.lastName}</span>
-          <span>@{person.username}</span>
+          <Link
+            to={`/profile/${person._id}`}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            <span>@{person.username}</span>
+          </Link>
         </div>
       </div>
       <button
