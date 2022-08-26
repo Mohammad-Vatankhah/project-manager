@@ -23,7 +23,7 @@ const FollowersCard = () => {
           {people.map((person, id) => {
             if (person._id !== user._id) {
               return (
-                <div className="follower">
+                <div className="follower" key={person._id}>
                   <User person={person} key={id} />
                 </div>
               );
