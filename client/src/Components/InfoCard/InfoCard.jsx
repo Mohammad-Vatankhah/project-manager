@@ -3,19 +3,36 @@ import "./InfoCard.css";
 import { UilPen } from "@iconscout/react-unicons";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import * as UserApi from "../../api/UserRequest.js";
 import { logOut } from "../../actions/AuthActions";
-export const InfoCard = ({ user }) => {
+export const InfoCard = () => {
   const [modalOpened, setModalOpened] = useState(false);
   const dispatch = useDispatch();
+  const params = useParams();
+  const profileUserId = params.id;
+  const [profileUser, SetProfileUser] = useState({});
+  const user = useSelector((state) => state.authReducer.authData.user);
+  useEffect(() => {
+    const fetchProfileUser = async () => {
+      if (profileUserId === user._id) {
+        SetProfileUser(user);
+      } else {
+        const profileUser = await UserApi.getUser(profileUserId);
+        SetProfileUser(profileUser.data);
+      }
+    };
+    fetchProfileUser();
+  }, [profileUserId]);
 
-  const user1 = useSelector((state) => state.authReducer.authData.user);
   const handleLogOut = () => {
     dispatch(logOut());
   };
   return (
     <div className="InfoCard">
       <div className="infoHead">
-        {user._id === user1._id ? (
+        {profileUserId === user._id ? (
           <>
             <h4>Your Info</h4>
             <UilPen
@@ -25,7 +42,7 @@ export const InfoCard = ({ user }) => {
             />
           </>
         ) : (
-          <h4>{user.firstName + "'s info"}</h4>
+          <h4>{profileUser.firstName + "'s info"}</h4>
         )}
 
         <ProfileModal
@@ -38,21 +55,21 @@ export const InfoCard = ({ user }) => {
         <span>
           <b>Status: </b>
         </span>
-        <span>{user.status}</span>
+        <span>{profileUser.status}</span>
       </div>
       <div className="info">
         <span>
           <b>Lives in: </b>
         </span>
-        <span>{user.livesIn}</span>
+        <span>{profileUser.livesIn}</span>
       </div>
       <div className="info">
         <span>
           <b>E-mail: </b>
         </span>
-        <span>{user.Email}</span>
+        <span>{profileUser.Email}</span>
       </div>
-      {user._id === user1._id && (
+      {profileUserId === user._id && (
         <button className="button" id="logout-button" onClick={handleLogOut}>
           Log Out
         </button>
