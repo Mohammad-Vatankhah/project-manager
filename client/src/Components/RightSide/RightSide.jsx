@@ -4,7 +4,6 @@ import { FiHome } from "react-icons/fi";
 import { FiSettings } from "react-icons/fi";
 import { MdNotificationsNone } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
-import TrendCard from "../TrendCard/TrendCard";
 import { Link } from "react-router-dom";
 
 const RightSide = () => {
@@ -19,7 +18,6 @@ const RightSide = () => {
         <MdNotificationsNone style={iconStyle} />
         <BiMessageDetail style={iconStyle} />
       </div>
-      <TrendCard />
     </div>
   );
 };
