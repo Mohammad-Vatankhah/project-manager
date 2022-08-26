@@ -2,10 +2,12 @@ import React from "react";
 import "./ProfileCard.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-const ProfileCard = ({ location }) => {
+
+const ProfileCard = (props) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  const user = useSelector((state) => state.authReducer.authData.user);
+  const user1 = useSelector((state) => state.authReducer.authData.user);
   const projects = useSelector((state) => state.projectReducer.project);
+  const user = props.user;
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
@@ -45,7 +47,7 @@ const ProfileCard = ({ location }) => {
             <span>{user.followers.length}</span>
             <span>Followers</span>
           </div>
-          {location === "profilePage" && (
+          {props.location === "profilePage" && (
             <>
               <div className="vl"></div>
               <div className="follow">
@@ -65,9 +67,9 @@ const ProfileCard = ({ location }) => {
       <Link
         className="myProfile"
         style={{ textDecoration: "none" }}
-        to={`/profile/${user._id}`}
+        to={`/profile/${user1._id}`}
       >
-        {location === "profilePage" ? "" : <span>My Profile</span>}
+        {props.location === "profilePage" ? "" : <span>My Profile</span>}
       </Link>
     </div>
   );
