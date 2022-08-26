@@ -2,18 +2,35 @@ import React from "react";
 import "./ProfileCard.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import * as UserApi from "../../api/UserRequest.js";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
-const ProfileCard = (props) => {
+const ProfileCard = ({ location }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  const user1 = useSelector((state) => state.authReducer.authData.user);
+  const [profileUser, setProfileUser] = useState({});
+  const params = useParams();
+  const profileUserId = params.id;
+  const user = useSelector((state) => state.authReducer.authData.user);
   const projects = useSelector((state) => state.projectReducer.project);
-  const user = props.user;
+  useEffect(() => {
+    const fetchProfileUser = async () => {
+      if ( location === "home" || profileUserId === user._id) {
+        setProfileUser(user);
+      } else {
+        const profileUser = await UserApi.getUser(profileUserId);
+        setProfileUser(profileUser.data);
+      }
+    };
+    fetchProfileUser();
+  }, [user]);
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
         <img
           src={
-            user.coverPicture
+            profileUser.coverPicture
               ? serverPublic + user.coverPicture
               : serverPublic + "defaultCover.jpg"
           }
@@ -47,7 +64,7 @@ const ProfileCard = (props) => {
             <span>{user.followers.length}</span>
             <span>Followers</span>
           </div>
-          {props.location === "profilePage" && (
+          {location === "profilePage" && (
             <>
               <div className="vl"></div>
               <div className="follow">
@@ -67,9 +84,9 @@ const ProfileCard = (props) => {
       <Link
         className="myProfile"
         style={{ textDecoration: "none" }}
-        to={`/profile/${user1._id}`}
+        to={`/profile/${user._id}`}
       >
-        {props.location === "profilePage" ? "" : <span>My Profile</span>}
+        {location === "profilePage" ? "" : <span>My Profile</span>}
       </Link>
     </div>
   );
