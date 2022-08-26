@@ -24,22 +24,23 @@ const ProfileCard = ({ location }) => {
       }
     };
     fetchProfileUser();
-  }, [user]);
+  }, [profileUser.data]);
   return (
     <div className="ProfileCard">
+      {console.log(profileUser)}
       <div className="ProfileImages">
         <img
           src={
             profileUser.coverPicture
-              ? serverPublic + user.coverPicture
+              ? serverPublic + profileUser.coverPicture
               : serverPublic + "defaultCover.jpg"
           }
           alt=""
         />
         <img
           src={
-            user.profilePicture
-              ? serverPublic + user.profilePicture
+            profileUser.profilePicture
+              ? serverPublic + profileUser.profilePicture
               : serverPublic + "defaultProfilePicture.jpg"
           }
           alt=""
@@ -47,9 +48,9 @@ const ProfileCard = ({ location }) => {
       </div>
 
       <div className="ProfileName">
-        <span>@{user.username}</span>
-        <span>{user.firstName + " " + user.lastName}</span>
-        {user.status && <span>{user.status}</span>}
+        <span>@{profileUser.username}</span>
+        <span>{profileUser.firstName + " " + profileUser.lastName}</span>
+        {profileUser.status && <span>{profileUser.status}</span>}
       </div>
 
       <div className="followStatus">
@@ -70,7 +71,7 @@ const ProfileCard = ({ location }) => {
               <div className="follow">
                 <span>
                   {
-                    projects.filter((project) => project.publisher === user._id)
+                    projects.filter((project) => project.publisher === profileUser._id)
                       .length
                   }
                 </span>
