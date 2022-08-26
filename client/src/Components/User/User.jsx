@@ -34,7 +34,7 @@ export const User = ({ person }) => {
             to={`/profile/${person._id}`}
             style={{
               textDecoration: "none",
-              color: "inherit",
+              color: "inherit", maxWidth:"100px"
             }}
           >
             <span>@{person.username}</span>
