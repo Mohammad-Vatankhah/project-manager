@@ -4,11 +4,11 @@ import FollowersCard from "../FollowersCard/FollowersCard";
 import { InfoCard } from "../InfoCard/InfoCard";
 import "../ProfileSide/ProfileSide.css";
 import { CompaniesCard } from "../CompaniesCard/CompaniesCard";
-export const UserProfileLeft = ({ user }) => {
+export const UserProfileLeft = () => {
   return (
     <div className="ProfileSide">
       <LogoSearch />
-      <InfoCard user={user} />
+      <InfoCard />
       <CompaniesCard />
       <FollowersCard />
     </div>
