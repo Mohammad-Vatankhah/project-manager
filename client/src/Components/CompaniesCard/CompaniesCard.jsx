@@ -19,13 +19,13 @@ export const CompaniesCard = () => {
       setCompanies(data.data);
     };
     fetchCompanies();
-  }, []);
+  }, [profileUserId]);
   return (
     <div className="CompaniesCard">
       <h3>Companies</h3>
-      {companies.map((company) => {
+      {companies.length > 0 ? companies.map((company) => {
         return (
-          <div className="company" key={company._id}>
+          <div className="company" key={company._id }>
             <div>
               <img
                 src={
@@ -46,7 +46,7 @@ export const CompaniesCard = () => {
             </button>
           </div>
         );
-      })}
+      }) : <span>No companies available</span>}
       {user._id === profileUserId && (
         <button
           onClick={() => setModalOpened(true)}
