@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Home } from '../../Pages/Home/Home'
 import FollowersCard from '../FollowersCard/FollowersCard'
 import LogoSearch from '../LogoSearch/LogoSearch'
 import ProfileCard from '../ProfileCard/ProfileCard'
@@ -10,7 +11,7 @@ const ProfileSide = () => {
   return (
     <div className="ProfileSide">
         <LogoSearch />
-        <ProfileCard user={user} />
+        <ProfileCard location={"home"} />
         <FollowersCard />
     </div>
   )
