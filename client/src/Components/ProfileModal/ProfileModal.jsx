@@ -5,14 +5,13 @@ import { useParams } from "react-router-dom";
 import { uploadImage } from "../../actions/UploadAction";
 import { updateUser } from "../../actions/UserAction";
 function ProfileModal(props) {
-  const dispathch = useDispatch();
+  const dispatch = useDispatch();
   const param = useParams();
   const theme = useMantineTheme();
   const { password, ...other } = props.data;
   const [formData, setFormData] = useState(other);
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
-  const user = useSelector((state) => state.authReducer.authData.user);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -35,7 +34,7 @@ function ProfileModal(props) {
       data.append("file", profileImage);
       UserData.profilePicture = fileName;
       try {
-        dispathch(uploadImage(data));
+        dispatch(uploadImage(data));
       } catch (error) {
         console.log(error);
       }
@@ -47,12 +46,12 @@ function ProfileModal(props) {
       data.append("file", coverImage);
       UserData.coverPicture = fileName;
       try {
-        dispathch(uploadImage(data));
+        dispatch(uploadImage(data));
       } catch (error) {
         console.log(error);
       }
     }
-    dispathch(updateUser(param.id, UserData));
+    dispatch(updateUser(param.id, UserData));
     props.setModalOpened(false);
   };
   return (
