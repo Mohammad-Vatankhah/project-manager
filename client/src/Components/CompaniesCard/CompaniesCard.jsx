@@ -14,14 +14,14 @@ export const CompaniesCard = () => {
   const profileUserId = params.id;
   const user = useSelector((state) => state.authReducer.authData.user);
   const [modalOpened, setModalOpened] = useState(false);
-  const companies = useSelector((state) => state.companyReducer.companyData);
   useEffect(() => {
     dispatch(getUserCompanies(user._id));
   }, [modalOpened, profileUserId]);
+  const {companyData:companies, loading} = useSelector((state) => state.companyReducer);
   return (
     <div className="CompaniesCard">
       <h3>Companies</h3>
-      {companies.length > 0 ? (
+      {companies.length > 0 ? ( loading ? "Fetching companies..." :
         companies.map((company) => {
           return (
             <div className="company" key={company._id}>
