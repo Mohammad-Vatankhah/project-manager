@@ -11,7 +11,9 @@ export const CompanyModal = (props) => {
   const [formData, setFormData] = useState({ owner: user._id });
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
-  const creating = useSelector((state) => state.companyReducer.uploading);
+  const { uploading: creating, uploaded: created } = useSelector(
+    (state) => state.companyReducer
+  );
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -51,7 +53,7 @@ export const CompanyModal = (props) => {
       }
     }
     dispatch(createCompany(formData));
-    props.setModalOpened(false);
+    created && props.setModalOpened(false);
   };
   return (
     <Modal
