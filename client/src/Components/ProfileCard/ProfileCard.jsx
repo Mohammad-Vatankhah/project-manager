@@ -24,10 +24,9 @@ const ProfileCard = ({ location }) => {
       }
     };
     fetchProfileUser();
-  }, [profileUser.data]);
+  }, [profileUserId]);
   return (
     <div className="ProfileCard">
-      {console.log(profileUser)}
       <div className="ProfileImages">
         <img
           src={
@@ -57,11 +56,13 @@ const ProfileCard = ({ location }) => {
         <hr />
         <div>
           <div className="follow">
+            {/* ???? */}
             <span>{user.followings.length}</span>
             <span>Followings</span>
           </div>
           <div className="vl"></div>
           <div className="follow">
+            {/* ???? */}
             <span>{user.followers.length}</span>
             <span>Followers</span>
           </div>
