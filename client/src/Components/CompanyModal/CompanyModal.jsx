@@ -1,8 +1,58 @@
 import { Modal, useMantineTheme } from "@mantine/core";
-import "../../Pages/Auth/Auth.css"
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadImage } from "../../actions/UploadAction";
+import "../../Pages/Auth/Auth.css";
+import * as CompanyApi from "../../api/CompanyRequests";
+import { updateUser } from "../../actions/UserAction";
 export const CompanyModal = (props) => {
   const theme = useMantineTheme();
-
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.authReducer.authData.user);
+  const [formData, setFormData] = useState({ owner: user._id });
+  const [profileImage, setProfileImage] = useState(null);
+  const [coverImage, setCoverImage] = useState(null);
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const onImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      let img = e.target.files[0];
+      e.target.name === "profileImage"
+        ? setProfileImage(img)
+        : setCoverImage(img);
+    }
+  };
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    let companyData = formData;
+    if (profileImage) {
+      const data = new FormData();
+      const fileName = Date.now() + profileImage.name;
+      data.append("name", fileName);
+      data.append("file", profileImage);
+      companyData.profilePicture = fileName;
+      try {
+        dispatch(uploadImage(data));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    if (coverImage) {
+      const data = new FormData();
+      const fileName = Date.now() + coverImage.name;
+      data.append("name", fileName);
+      data.append("file", coverImage);
+      companyData.coverPicture = fileName;
+      try {
+        dispatch(uploadImage(data));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    await CompanyApi.createCompany(formData);
+    props.setModalOpened(false);
+  };
   return (
     <Modal
       overlayColor={
@@ -22,22 +72,25 @@ export const CompanyModal = (props) => {
           <input
             className="infoInput"
             type="text"
-            name="companyName"
+            name="name"
             placeholder="Company Name"
+            onChange={handleChange}
           />
         </div>
         <div>
-            <input
-              className="infoInput"
-              type="text"
-              name="companyId"
-              placeholder="Company ID"
-            />
+          <input
+            className="infoInput"
+            type="text"
+            name="companyId"
+            placeholder="Company ID"
+            onChange={handleChange}
+          />
           <input
             className="infoInput"
             type="text"
             name="contactNumber"
             placeholder="Contact Number"
+            onChange={handleChange}
           />
         </div>
         <div>
@@ -46,22 +99,32 @@ export const CompanyModal = (props) => {
             type="text"
             name="address"
             placeholder="Address"
+            onChange={handleChange}
           />
         </div>
         <div>
-          <input type="email" className="infoInput" placeholder="E-mail" />
+          <input
+            type="email"
+            className="infoInput"
+            name="Email"
+            placeholder="E-mail"
+            onChange={handleChange}
+          />
         </div>
         <div>
           Profile Image
-          <input type="file" name="profileImg" />
+          <input type="file" name="profileImage" onChange={onImageChange} />
           Cover Image
-          <input type="file" name="coverImage" />
+          <input type="file" name="coverImage" onChange={onImageChange} />
         </div>
-        <button style={{ width: "6rem", height: "2rem" }} className="button">
+        <button
+          style={{ width: "6rem", height: "2rem" }}
+          className="button"
+          onClick={handleSubmit}
+        >
           Done
         </button>
       </form>
     </Modal>
   );
-}
-
+};
