@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadImage } from "../../actions/UploadAction";
 import "../../Pages/Auth/Auth.css";
-import * as CompanyApi from "../../api/CompanyRequests";
-import { updateUser } from "../../actions/UserAction";
+import { createCompany } from "../../actions/CompanyActions";
 export const CompanyModal = (props) => {
   const theme = useMantineTheme();
   const dispatch = useDispatch();
@@ -12,6 +11,7 @@ export const CompanyModal = (props) => {
   const [formData, setFormData] = useState({ owner: user._id });
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
+  const creating = useSelector((state) => state.companyReducer.uploading);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -23,7 +23,7 @@ export const CompanyModal = (props) => {
         : setCoverImage(img);
     }
   };
-  const handleSubmit = async(e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     let companyData = formData;
     if (profileImage) {
@@ -50,7 +50,7 @@ export const CompanyModal = (props) => {
         console.log(error);
       }
     }
-    await CompanyApi.createCompany(formData);
+    dispatch(createCompany(formData));
     props.setModalOpened(false);
   };
   return (
@@ -121,8 +121,9 @@ export const CompanyModal = (props) => {
           style={{ width: "6rem", height: "2rem" }}
           className="button"
           onClick={handleSubmit}
+          disabled={creating}
         >
-          Done
+          {creating ? "Creating..." : "Create"}
         </button>
       </form>
     </Modal>
