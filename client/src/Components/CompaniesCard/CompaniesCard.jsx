@@ -19,34 +19,38 @@ export const CompaniesCard = () => {
       setCompanies(data.data);
     };
     fetchCompanies();
-  }, [profileUserId]);
+  }, [modalOpened, profileUserId]);
   return (
     <div className="CompaniesCard">
       <h3>Companies</h3>
-      {companies.length > 0 ? companies.map((company) => {
-        return (
-          <div className="company" key={company._id }>
-            <div>
-              <img
-                src={
-                  company.profilePicture
-                    ? serverPublic + user.profilePicture
-                    : serverPublic + "defaultCompanyProfile.png"
-                }
-                alt=""
-                className="companyImg"
-              />
-              <div className="name">
-                <span>{company.name}</span>
-                <span>{company.address}</span>
+      {companies.length > 0 ? (
+        companies.map((company) => {
+          return (
+            <div className="company" key={company._id}>
+              <div>
+                <img
+                  src={
+                    company.profilePicture
+                      ? serverPublic + company.profilePicture
+                      : serverPublic + "defaultCompanyProfile.png"
+                  }
+                  alt=""
+                  className="companyImg"
+                />
+                <div className="name">
+                  <span>{company.name}</span>
+                  <span>{company.address}</span>
+                </div>
               </div>
+              <button className="button" id="view-button">
+                View
+              </button>
             </div>
-            <button className="button" id="view-button">
-              View
-            </button>
-          </div>
-        );
-      }) : <span>No companies available</span>}
+          );
+        })
+      ) : (
+        <span>No companies available</span>
+      )}
       {user._id === profileUserId && (
         <button
           onClick={() => setModalOpened(true)}
