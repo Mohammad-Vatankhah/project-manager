@@ -4,21 +4,19 @@ import * as CompanyApi from "../../api/CompanyRequests";
 import { useState } from "react";
 import { CompanyModal } from "../CompanyModal/CompanyModal";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { getUserCompanies } from "../../actions/CompanyActions";
 export const CompaniesCard = () => {
+  const dispatch = useDispatch();
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const params = useParams();
   const profileUserId = params.id;
   const user = useSelector((state) => state.authReducer.authData.user);
   const [modalOpened, setModalOpened] = useState(false);
-  const [companies, setCompanies] = useState([]);
+  const companies = useSelector((state) => state.companyReducer.companyData);
   useEffect(() => {
-    const fetchCompanies = async () => {
-      const data = await CompanyApi.getUserCompanies(profileUserId);
-      setCompanies(data.data);
-    };
-    fetchCompanies();
+    dispatch(getUserCompanies(user._id));
   }, [modalOpened, profileUserId]);
   return (
     <div className="CompaniesCard">
