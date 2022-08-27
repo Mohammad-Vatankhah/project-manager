@@ -8,7 +8,7 @@ export const createCompany = async (req, res) => {
     await company.save();
     const owner = await UserModel.findById(req.body.owner);
     await owner.updateOne({ $push: { companies: company.companyId } });
-    res.status(200).json("Company created!");
+    res.status(200).json(company);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
