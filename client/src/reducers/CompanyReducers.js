@@ -23,7 +23,7 @@ const companyReducer = (
         companyData: action.data,
         loading: false,
         error: false,
-        uploaded: false,
+        uploaded: true,
       };
     case "COMPANY_FAIL":
       return {
