@@ -28,7 +28,7 @@ export const CompaniesCard = () => {
           "Fetching companies..."
         ) : (
           companies.map((company) => {
-            return <Company company={company} key={company._id} />;
+            return <Company company={company} key={company._id} location="profile"/>;
           })
         )
       ) : (
