@@ -33,7 +33,6 @@ const UserSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    companies: [String],
     followers: [String],
     followings: [String],
   },
