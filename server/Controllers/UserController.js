@@ -34,6 +34,23 @@ export const getUser = async (req, res) => {
   }
 };
 
+// get user by username
+export const getUserByUsername = async (req, res) => {
+  const username = req.params.username;
+  try {
+    const user = await UserModel.findOne({ username: username });
+    if (user) {
+      // prevent getting password in get request
+      const { password, ...otherDetails } = user._doc;
+      res.status(200).json(otherDetails);
+    } else {
+      res.status(404).json("No such user exists");
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // update a user
 
 export const updateUser = async (req, res) => {
