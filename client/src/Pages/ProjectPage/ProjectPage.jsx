@@ -12,6 +12,9 @@ import { Comments } from "../../Components/Comments/Comments";
 import { BiSend } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { User } from "../../Components/User/User";
+import { getByUsername } from "../../api/UserRequest";
+import { useEffect } from "react";
 
 export const ProjectPage = () => {
   const [activeTab, setActiveTab] = useState("Process");
@@ -20,10 +23,32 @@ export const ProjectPage = () => {
   const projects = useSelector((state) => state.projectReducer.project);
   const project = projects.filter((p) => param.id === p._id);
   const iconStyle = { fontSize: 30, cursor: "pointer" };
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    const getEmployees = () => {
+      project[0].employees.map(async (e) => {
+        const { data } = await getByUsername(e);
+        setEmployees((prev) => [...prev, data]);
+      });
+    };
+    getEmployees();
+  }, []);
   return (
     <div className="ProjectPage">
       <div className="left">
         <span>Employees: </span>
+        <div className="employeesCard">
+          {employees.map((e) => (
+            <User
+              person={e}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+              }}
+            />
+          ))}
+        </div>
         <br />
         <span>Company: </span>
         <Project style={{ position: "sticky" }} data={project[0]} />
