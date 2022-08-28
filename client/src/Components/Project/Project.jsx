@@ -4,9 +4,8 @@ import "./Project.css";
 import { ProjectReaction } from "../ProjectReaction/ProjectReaction";
 import { ProjectDetails } from "../ProjectDetails/ProjectDetails";
 
-const Project = (data) => {
-
-  const date = new Date(data.data.createdAt);
+const Project = ({data, location}) => {
+  const date = new Date(data.createdAt);
   const weekday = [
     "Sunday",
     "Monday",
@@ -41,21 +40,21 @@ const Project = (data) => {
   }`;
   return (
     <div className="Project">
-      {data.data.image && (
+      {data.image && (
         <img
           src={process.env.REACT_APP_PUBLIC_FOLDER + data.data.image}
           alt=""
         />
       )}
-      {data.data.image ? (
+      {data.image ? (
         <div>
-          <ProjectReaction data={data} />
+          <ProjectReaction data={data} location={location} />
           <ProjectDetails data={data} img={true} />
         </div>
       ) : (
         <div>
           <ProjectDetails data={data} img={false} />
-          <ProjectReaction data={data} />
+          <ProjectReaction data={data} location={location} />
         </div>
       )}
 
