@@ -16,6 +16,7 @@ import { User } from "../../Components/User/User";
 import { getByUsername } from "../../api/UserRequest";
 import { useEffect } from "react";
 import { Company } from "../../Components/Company/Company";
+import { Link } from "react-router-dom";
 
 export const ProjectPage = () => {
   const [activeTab, setActiveTab] = useState("Process");
@@ -52,7 +53,7 @@ export const ProjectPage = () => {
           ))}
         </div>
         <br />
-        <div style={{marginBottom: "15px"}}>
+        <div style={{ marginBottom: "15px" }}>
           <span>Company: </span>
           {project[0].company === "" ? (
             "No companies set for this project."
@@ -65,7 +66,9 @@ export const ProjectPage = () => {
       </div>
       <div className="right">
         <div className="navIcons">
-          <FiHome style={iconStyle} />
+          <Link style={{ textDecoration: "none", color: "black" }} to="../home">
+            <FiHome style={iconStyle} />
+          </Link>
           <FiSettings style={iconStyle} />
           <MdNotificationsNone style={iconStyle} />
           <BiMessageDetail style={iconStyle} />

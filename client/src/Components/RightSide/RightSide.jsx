@@ -11,7 +11,7 @@ const RightSide = () => {
   return (
     <div className="RightSide">
       <div className="navIcons">
-        <Link style={{ textDecoration: "none" }} to="../home">
+        <Link style={{ textDecoration: "none", color:"black" }} to="../home">
           <FiHome style={iconStyle} />
         </Link>
         <FiSettings style={iconStyle} />
