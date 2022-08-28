@@ -19,7 +19,7 @@ const FollowersCard = () => {
     <div className="FollowersCard">
       {people.length > 0 && (
         <>
-          <h3>People you may know</h3>
+          <h3 style={{alignSelf: 'flex-start',}}>People you may know</h3>
           {people.map((person, id) => {
             if (person._id !== user._id) {
               return (

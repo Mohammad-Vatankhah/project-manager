@@ -7,7 +7,6 @@ import { likePost } from "../../api/ProjectRequest";
 import { useNavigate } from "react-router-dom";
 
 export const ProjectReaction = ({ data, location }) => {
-  console.log(data);
   const navigate = useNavigate();
   const user = useSelector((state) => state.authReducer.authData.user);
   const likeStyle = { fontSize: 30, color: "var(--blue)", cursor: "pointer" };

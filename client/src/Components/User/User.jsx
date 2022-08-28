@@ -28,26 +28,29 @@ export const User = ({ person }) => {
           alt=""
           className="followerImage"
         />
-        <div className="name">
+        <div className="PersonName">
           <span>{person.firstName + " " + person.lastName}</span>
           <Link
             to={`/profile/${person._id}`}
             style={{
               textDecoration: "none",
-              color: "inherit", maxWidth:"100px"
+              color: "inherit",
+              maxWidth: "110px",
             }}
           >
             <span>@{person.username}</span>
           </Link>
         </div>
       </div>
-      <button
-        className={following ? "button unfollow" : "button"}
-        id="fc-button"
-        onClick={handleFollow}
-      >
-        {following ? "Unfollow" : "Follow"}
-      </button>
+      {person._id !== user._id && (
+        <button
+          className={following ? "button unfollow" : "button"}
+          id="fc-button"
+          onClick={handleFollow}
+        >
+          {following ? "Unfollow" : "Follow"}
+        </button>
+      )}
     </div>
   );
 };

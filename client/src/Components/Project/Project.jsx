@@ -42,7 +42,7 @@ const Project = ({data, location}) => {
     <div className="Project">
       {data.image && (
         <img
-          src={process.env.REACT_APP_PUBLIC_FOLDER + data.data.image}
+          src={process.env.REACT_APP_PUBLIC_FOLDER + data.image}
           alt=""
         />
       )}

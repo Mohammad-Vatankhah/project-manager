@@ -4,6 +4,8 @@
   gap: 1rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 13px;
 }
 
@@ -11,6 +13,7 @@
   background-color: var(--cardColor);
   padding: 10px;
   border-radius: 10px;
+  width: 16.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,12 +30,14 @@
   border-radius: 50%;
 }
 
-.name {
+.PersonName {
   display: flex;
   overflow: hidden;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  z-index: 0;
 }
 
 #fc-button {
@@ -45,6 +50,7 @@
   color: var(--blue);
   border: 2px solid var(--blue);
   cursor: pointer;
+  z-index: 1000;
   background: transparent;
 }
 

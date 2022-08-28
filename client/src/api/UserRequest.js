@@ -21,3 +21,6 @@ export const getAllUser = () => API.get("/user/allUsers");
 export const followUser = (id, data) => API.put(`/user/${id}/follow`, data);
 
 export const unfollowUser = (id, data) => API.put(`/user/${id}/unfollow`, data);
+
+export const getByUsername = (username) =>
+  API.get(`user/${username}/getByUsername`);

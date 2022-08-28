@@ -5,6 +5,7 @@ import {
   followUser,
   getAllUsers,
   getUser,
+  getUserByUsername,
   unfollowUser,
   updateUser,
 } from "../Controllers/UserController.js";
@@ -16,4 +17,5 @@ router.delete("/:id/delete", authMidleWare, deleteUser);
 router.put("/:id/follow", authMidleWare, followUser);
 router.put("/:id/unfollow", authMidleWare, unfollowUser);
 router.get("/allUsers", getAllUsers);
+router.get("/:username/getByUsername", getUserByUsername);
 export default router;
