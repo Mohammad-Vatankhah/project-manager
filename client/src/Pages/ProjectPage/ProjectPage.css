@@ -71,3 +71,9 @@
   margin-bottom: 20px;
   cursor: pointer;
 }
+
+.employeesCard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
