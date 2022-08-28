@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import { User } from "../../Components/User/User";
 import { getByUsername } from "../../api/UserRequest";
 import { useEffect } from "react";
+import { Company } from "../../Components/Company/Company";
 
 export const ProjectPage = () => {
   const [activeTab, setActiveTab] = useState("Process");
@@ -41,6 +42,7 @@ export const ProjectPage = () => {
           {employees.map((e) => (
             <User
               person={e}
+              key={e._id}
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -50,7 +52,14 @@ export const ProjectPage = () => {
           ))}
         </div>
         <br />
-        <span>Company: </span>
+        <div style={{marginBottom: "15px"}}>
+          <span>Company: </span>
+          {project[0].company === "" ? (
+            "No companies set for this project."
+          ) : (
+            <Company company={project[0].company} />
+          )}
+        </div>
         <Project style={{ position: "sticky" }} data={project[0]} />
         <AddProcess modalOpened={modalOpened} setModalOpened={setModalOpened} />
       </div>
