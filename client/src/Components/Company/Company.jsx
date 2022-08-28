@@ -3,15 +3,20 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getCompanyByUsername } from "../../api/CompanyRequests";
 import "./Company.css";
-export const Company = ({ company }) => {
+export const Company = ({ company, location }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const [companyData, setCompanyData] = useState({});
+
   useEffect(() => {
-    const fetchCompany = async () => {
-      const { data } = await getCompanyByUsername(company);
-      setCompanyData(data);
-    };
-    fetchCompany();
+    if (location === "profile") {
+      setCompanyData(company);
+    } else {
+      const fetchCompany = async () => {
+        const { data } = await getCompanyByUsername(company);
+        setCompanyData(data);
+      };
+      fetchCompany();
+    }
   }, []);
   return (
     <div className="Company">
