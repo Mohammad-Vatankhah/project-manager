@@ -10,8 +10,11 @@ import { MultiSelect } from "react-multi-select-component";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadImage, uploadProject } from "../../actions/UploadAction";
 import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const CreateProject = () => {
+  const companies = useSelector((state) => state.companyReducer.companyData);
+  const [userCompanies, setUserCompanies] = useState([]);
   const dispatch = useDispatch();
   // get user data from authData
   const user = useSelector((state) => state.authReducer.authData.user);
@@ -35,7 +38,6 @@ export const CreateProject = () => {
 
   // set options for company
   const animatedComponents = makeAnimated();
-  const userCompanies = user.companies;
   let companyOptions = [{ value: "", label: "Remove company" }];
   userCompanies.length > 0 &&
     userCompanies.map(
@@ -90,6 +92,15 @@ export const CreateProject = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const setCompanies = () => {
+      companies.map((e) => {
+        setUserCompanies((prev) => [...prev, e.companyId]);
+      });
+    };
+    setCompanies();
+  }, []);
   return (
     <div className="cp">
       <div className="CreateProject">
