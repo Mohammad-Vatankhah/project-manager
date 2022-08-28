@@ -1,7 +1,6 @@
 import React from "react";
-import { ProjectData } from "../../Data/ProjectData";
 import Project from "../../Components/Project/Project";
-import "./PostPage.css";
+import "./ProjectPage.css";
 import { useState } from "react";
 import { FiHome } from "react-icons/fi";
 import { FiSettings } from "react-icons/fi";
@@ -11,19 +10,23 @@ import { Processes } from "../../Components/Processes/Processes";
 import { AddProcess } from "../../Components/AddProcess/AddProcess";
 import { Comments } from "../../Components/Comments/Comments";
 import { BiSend } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-export const PostPage = () => {
+export const ProjectPage = () => {
   const [activeTab, setActiveTab] = useState("Process");
+  const param = useParams();
   const [modalOpened, setModalOpened] = useState(false);
-
+  const projects = useSelector((state) => state.projectReducer.project);
+  const project = projects.filter((p) => param.id === p._id);
   const iconStyle = { fontSize: 30, cursor: "pointer" };
   return (
-    <div className="PostPage">
+    <div className="ProjectPage">
       <div className="left">
         <span>Employees: </span>
         <br />
         <span>Company: </span>
-        <Project style={{ position: "sticky" }} data={ProjectData[0]} />
+        <Project style={{ position: "sticky" }} data={project[0]} />
         <AddProcess modalOpened={modalOpened} setModalOpened={setModalOpened} />
       </div>
       <div className="right">
