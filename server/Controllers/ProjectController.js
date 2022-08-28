@@ -5,14 +5,9 @@ import UserModel from "../Models/userModel.js";
 // create new project
 export const createProject = async (req, res) => {
   try {
-    const user = await UserModel.findById(req.body.publisher);
-    if (user.companies.includes(req.body.company) || req.body.company === "") {
-      const newProject = new ProjectModel(req.body);
-      await newProject.save();
-      res.status(200).json(newProject);
-    } else {
-      res.status(403).json("You can only add project to  your own company!");
-    }
+    const newProject = new ProjectModel(req.body);
+    await newProject.save();
+    res.status(200).json(newProject);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -215,17 +210,18 @@ export const getTimeLinePosts = async (req, res) => {
     const projects = currentUserProjects.concat(
       followingProjects[0].followingProjects
     );
-    const uniqueProjects = [];
+    let uniqueProjects = [];
+    let temp = [];
     // remove duplicate projects
-    projects.map((element, index) => {
+    projects.map((element) => {
       let id = element._id.toString();
-      if (uniqueProjects.includes(id)) {
-        projects.splice(index, 1);
+      if (!temp.includes(id)) {
+        uniqueProjects.push(element);
+        temp.push(id);
       }
-      uniqueProjects.push(id);
     });
     res.status(200).json(
-      projects.sort((a, b) => {
+      uniqueProjects.sort((a, b) => {
         return b.createdAt - a.createdAt;
       })
     );
