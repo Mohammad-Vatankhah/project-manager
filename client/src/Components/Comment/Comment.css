@@ -7,6 +7,7 @@
   background-color: var(--cardColor);
   border-radius: 1rem;
   gap: 1rem;
+  margin-bottom: 16px;
 }
 
 .Comment img {
