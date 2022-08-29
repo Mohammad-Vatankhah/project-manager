@@ -21,7 +21,7 @@ export const User = ({ person }) => {
       <div>
         <img
           src={
-            person.coverPicture
+            person.profilePicture
               ? serverPublic + person.profilePicture
               : serverPublic + "defaultProfilePicture.jpg"
           }
