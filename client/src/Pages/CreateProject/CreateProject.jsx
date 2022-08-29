@@ -79,7 +79,6 @@ export const CreateProject = () => {
       data.append("name", filename);
       data.append("file", image);
       newProject.image = filename;
-      console.log(data);
       try {
         dispatch(uploadImage(data));
       } catch (error) {
