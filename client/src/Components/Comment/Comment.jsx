@@ -34,10 +34,11 @@ export const Comment = ({ data }) => {
           alt=""
         />
         <span className="cm">
-          <b>{user.username}:</b>
+          <span>
+            <b>{user.username}:</b>
+            {" " + data.desc}
+          </span>
         </span>
-        <br />
-        <span>{data.desc}</span>
       </div>
       <span style={{ color: "var(--gray)", fontSize: "12px" }}>{time}</span>
     </div>

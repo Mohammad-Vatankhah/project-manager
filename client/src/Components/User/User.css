@@ -58,3 +58,7 @@
   border: none;
   background: var(--blue);
 }
+
+.PersonName {
+  text-overflow: ellipsis;
+}

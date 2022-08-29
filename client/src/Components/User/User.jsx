@@ -35,7 +35,6 @@ export const User = ({ person }) => {
             style={{
               textDecoration: "none",
               color: "inherit",
-              maxWidth: "110px",
             }}
           >
             <span>@{person.username}</span>

@@ -1,19 +1,19 @@
-.Comment{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    padding: 1rem;
-    background-color: var(--cardColor);
-    border-radius: 1rem;
-    gap: 1rem;
+.Comment {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 1rem;
+  background-color: var(--cardColor);
+  border-radius: 1rem;
+  gap: 1rem;
 }
 
 .Comment img {
-    width: 4rem;
-    height: 4rem;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .comment-data {
@@ -23,5 +23,8 @@
 }
 
 .cm {
-    margin-left: 1rem;
+  margin-left: 1rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
