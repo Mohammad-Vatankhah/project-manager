@@ -9,7 +9,6 @@ import { BiMessageDetail } from "react-icons/bi";
 import { Processes } from "../../Components/Processes/Processes";
 import { AddProcess } from "../../Components/AddProcess/AddProcess";
 import { Comments } from "../../Components/Comments/Comments";
-import { BiSend } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { User } from "../../Components/User/User";
@@ -17,24 +16,26 @@ import { getByUsername } from "../../api/UserRequest";
 import { useEffect } from "react";
 import { Company } from "../../Components/Company/Company";
 import { Link } from "react-router-dom";
-
 export const ProjectPage = () => {
   const [activeTab, setActiveTab] = useState("Process");
   const param = useParams();
   const [modalOpened, setModalOpened] = useState(false);
   const projects = useSelector((state) => state.projectReducer.project);
   const project = projects.filter((p) => param.id === p._id);
+  const currentProject = project[0];
   const iconStyle = { fontSize: 30, cursor: "pointer" };
   const [employees, setEmployees] = useState([]);
+
   useEffect(() => {
-    const getEmployees = () => {
-      project[0].employees.map(async (e) => {
-        const { data } = await getByUsername(e);
-        setEmployees((prev) => [...prev, data]);
-      });
-    };
     getEmployees();
-  }, []);
+  }, [currentProject]);
+  const getEmployees = () => {
+    currentProject.employees.map(async (e) => {
+      const { data } = await getByUsername(e);
+      setEmployees((prev) => [...prev, data]);
+    });
+  };
+
   return (
     <div className="ProjectPage">
       <div className="left">
@@ -102,15 +103,7 @@ export const ProjectPage = () => {
               <Processes />
             </div>
           )}
-          {activeTab === "Comments" && (
-            <div>
-              <div className="create-comment">
-                <input type="text" placeholder="Post a comment" />
-                <BiSend style={{ fontSize: "33px", color: "var(--blue)" }} />
-              </div>
-              <Comments comments={project[0].comments} />
-            </div>
-          )}
+          {activeTab === "Comments" && <Comments project={currentProject} />}
         </div>
       </div>
     </div>
