@@ -14,17 +14,18 @@ const ProfileCard = ({ location }) => {
   const profileUserId = params.id;
   const user = useSelector((state) => state.authReducer.authData.user);
   const projects = useSelector((state) => state.projectReducer.project);
+  const fetchProfileUser = () => {
+    if (location === "home" || profileUserId === user._id) {
+      setProfileUser(user);
+    } else {
+      UserApi.getUser(profileUserId).then((res) => {
+        setProfileUser(res.data);
+      });
+    }
+  };
   useEffect(() => {
-    const fetchProfileUser = async () => {
-      if ( location === "home" || profileUserId === user._id) {
-        setProfileUser(user);
-      } else {
-        const profileUser = await UserApi.getUser(profileUserId);
-        setProfileUser(profileUser.data);
-      }
-    };
     fetchProfileUser();
-  }, [profileUserId]);
+  }, [profileUser, profileUserId]);
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
@@ -56,14 +57,12 @@ const ProfileCard = ({ location }) => {
         <hr />
         <div>
           <div className="follow">
-            {/* ???? */}
-            <span>{user.followings.length}</span>
+            <span>{profileUser.followings ? profileUser.followings.length : "loading..."}</span>
             <span>Followings</span>
           </div>
           <div className="vl"></div>
           <div className="follow">
-            {/* ???? */}
-            <span>{user.followers.length}</span>
+            <span>{profileUser.followers ? profileUser.followers.length : "loading..."}</span>
             <span>Followers</span>
           </div>
           {location === "profilePage" && (
@@ -72,8 +71,9 @@ const ProfileCard = ({ location }) => {
               <div className="follow">
                 <span>
                   {
-                    projects.filter((project) => project.publisher === profileUser._id)
-                      .length
+                    projects.filter(
+                      (project) => project.publisher === profileUser._id
+                    ).length
                   }
                 </span>
                 <span>Projects</span>

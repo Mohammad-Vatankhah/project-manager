@@ -21,8 +21,8 @@ export const Comment = ({ data }) => {
         <img
           src={
             user.profilePicture
-              ? serverPublic + "defaultProfilePicture.jpg"
-              : serverPublic + user.profilePicture
+              ? serverPublic + user.profilePicture
+              : serverPublic + "defaultProfilePicture.jpg"
           }
           alt=""
         />
