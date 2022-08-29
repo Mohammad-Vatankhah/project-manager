@@ -1,8 +1,33 @@
 .Comments {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+.create-comment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.create-comment input {
+  border: none;
+  outline: none;
+  background-color: var(--inputColor);
+  height: 2.5rem;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 17px;
+}
+
+.create-comment svg {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.commentBox {
+  max-height: 80vh;
+  overflow: scroll;
+}
