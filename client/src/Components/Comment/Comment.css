@@ -2,12 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 80%;
   padding: 1rem;
   background-color: var(--cardColor);
   border-radius: 1rem;
   gap: 1rem;
   margin-bottom: 16px;
+  width: 80%;
 }
 
 .Comment img {

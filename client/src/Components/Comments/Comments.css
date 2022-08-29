@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
 .create-comment {
@@ -17,6 +17,7 @@
   outline: none;
   background-color: var(--inputColor);
   height: 2.5rem;
+  width: 80%;
   border-radius: 10px;
   margin-bottom: 20px;
   font-size: 17px;
@@ -28,6 +29,9 @@
 }
 
 .commentBox {
-  max-height: 80vh;
+  max-height: 70vh;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
