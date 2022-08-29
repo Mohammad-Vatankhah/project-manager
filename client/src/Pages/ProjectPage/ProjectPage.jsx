@@ -108,7 +108,7 @@ export const ProjectPage = () => {
                 <input type="text" placeholder="Post a comment" />
                 <BiSend style={{ fontSize: "33px", color: "var(--blue)" }} />
               </div>
-              <Comments />
+              <Comments comments={project[0].comments} />
             </div>
           )}
         </div>
