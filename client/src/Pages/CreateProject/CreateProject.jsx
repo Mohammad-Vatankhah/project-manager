@@ -22,6 +22,7 @@ export const CreateProject = () => {
   const [image, setImage] = useState(null);
   const imageRef = useRef();
   const desc = useRef();
+  const name = useRef();
   const [selectedCompany, setSelectedCompany] = useState("");
   const style = {
     control: (base) => ({
@@ -57,10 +58,6 @@ export const CreateProject = () => {
     }
   };
 
-  const handleChange = (e) => {
-    setSelectedCompany(e.value);
-  };
-
   const handleShare = (e) => {
     e.preventDefault();
     let employees = [user.username];
@@ -69,6 +66,7 @@ export const CreateProject = () => {
     }
     const newProject = {
       publisher: user._id,
+      name: name.current.value,
       desc: desc.current.value,
       employees: employees,
       company: selectedCompany,
@@ -106,14 +104,13 @@ export const CreateProject = () => {
         <h1>Create New Project</h1>
         <div className="inputs">
           <div className="line1">
-            <input type="text" placeholder="Project Name" />
+            <input type="text" placeholder="Project Name" ref={name} />
             <Select
               options={companyOptions}
               value={selectedCompany}
               styles={style}
               placeholder={selectedCompany !== "" ? selectedCompany : "Company"}
               className="select"
-              onChange={handleChange}
               isSearchable={true}
             ></Select>
           </div>
