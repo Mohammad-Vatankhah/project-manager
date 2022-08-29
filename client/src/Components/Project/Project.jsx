@@ -4,47 +4,19 @@ import "./Project.css";
 import { ProjectReaction } from "../ProjectReaction/ProjectReaction";
 import { ProjectDetails } from "../ProjectDetails/ProjectDetails";
 
-const Project = ({data, location}) => {
+const Project = ({ data, location }) => {
   const date = new Date(data.createdAt);
-  const weekday = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  const month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const sDate = `${
-    weekday[date.getDay()] +
-    ", " +
-    date.getDate() +
-    " " +
-    month[date.getMonth()] +
-    " " +
-    date.getFullYear()
-  }`;
+  const sDate = date.toLocaleString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour12: false,
+  });
   return (
     <div className="Project">
       {data.image && (
-        <img
-          src={process.env.REACT_APP_PUBLIC_FOLDER + data.image}
-          alt=""
-        />
+        <img src={process.env.REACT_APP_PUBLIC_FOLDER + data.image} alt="" />
       )}
       {data.image ? (
         <div>

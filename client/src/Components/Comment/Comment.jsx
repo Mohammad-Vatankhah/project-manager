@@ -15,6 +15,13 @@ export const Comment = ({ data }) => {
   useEffect(() => {
     fetchUser();
   }, []);
+
+  const date = new Date(data.createdAt);
+  const time = date.toLocaleDateString("en-US", {
+    hour12: false,
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   return (
     <div className="Comment">
       <div className="comment-data">
@@ -32,9 +39,7 @@ export const Comment = ({ data }) => {
         <br />
         <span>{data.desc}</span>
       </div>
-      <span style={{ color: "var(--gray)", fontSize: "12px" }}>
-        {data.date}
-      </span>
+      <span style={{ color: "var(--gray)", fontSize: "12px" }}>{time}</span>
     </div>
   );
 };
