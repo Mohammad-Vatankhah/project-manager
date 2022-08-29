@@ -33,6 +33,7 @@ const ProjectSchema = mongoose.Schema(
       type: String,
       requred: true,
     },
+    name: String,
     image: String,
     desc: String,
     likes: [String],
