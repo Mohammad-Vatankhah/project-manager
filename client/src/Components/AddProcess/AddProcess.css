@@ -21,3 +21,8 @@
 .infoForm span{
     margin-right: 10px;
 }
+
+.addProcess {
+    width: 5rem;
+    height: 2rem;
+}
