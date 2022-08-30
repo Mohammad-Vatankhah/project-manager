@@ -16,6 +16,7 @@ import { useEffect } from "react";
 import { Company } from "../../Components/Company/Company";
 import { Link } from "react-router-dom";
 import * as ProjectApi from "../../api/ProjectRequest";
+import { useSelector } from "react-redux";
 export const ProjectPage = () => {
   const [activeTab, setActiveTab] = useState("Process");
   const param = useParams();
@@ -23,6 +24,7 @@ export const ProjectPage = () => {
   const iconStyle = { fontSize: 30, cursor: "pointer" };
   const [employees, setEmployees] = useState([]);
   const [project, setProject] = useState();
+  const user = useSelector((state) => state.authReducer.authData.user);
   useEffect(() => {
     fetchProject();
     getEmployees();
@@ -104,14 +106,16 @@ export const ProjectPage = () => {
             <div className="cp-right">
               {activeTab === "Process" && (
                 <div className="processes">
-                  <button
-                    className="button"
-                    id="process-bt"
-                    onClick={() => setModalOpened(true)}
-                  >
-                    Add Process
-                  </button>
-                  <Processes />
+                  {project.employees.includes(user.username) && (
+                    <button
+                      className="button"
+                      id="process-bt"
+                      onClick={() => setModalOpened(true)}
+                    >
+                      Add Process
+                    </button>
+                  )}
+                  <Processes project={project} key={project._id} />
                 </div>
               )}
               {activeTab === "Comments" && <Comments project={project} />}
