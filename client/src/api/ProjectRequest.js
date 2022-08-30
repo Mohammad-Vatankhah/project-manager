@@ -12,3 +12,6 @@ export const addComment = (id, data) =>
 export const getProject = (id) => API.get(`/project/${id}/getProject`);
 
 export const getUserProject = (id) => API.get(`/project/${id}/getUserProjects`);
+
+export const addProcess = (id, data) =>
+  API.put(`/project/${id}/addProcess`, data);
