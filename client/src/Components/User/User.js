@@ -29,7 +29,7 @@ export const User = ({ person }) => {
           className="followerImage"
         />
         <div className="PersonName">
-          <span>{person.firstName + " " + person.lastName}</span>
+          <span className="elipsis">{person.firstName + " " + person.lastName}</span>
           <Link
             to={`/profile/${person._id}`}
             style={{
@@ -37,7 +37,7 @@ export const User = ({ person }) => {
               color: "inherit",
             }}
           >
-            <span>@{person.username}</span>
+            <span className="elipsis">@{person.username}</span>
           </Link>
         </div>
       </div>

@@ -48,6 +48,7 @@
 
 .unfollow {
   color: var(--blue);
+  width: 75px;
   border: 2px solid var(--blue);
   cursor: pointer;
   background: transparent;
@@ -59,6 +60,9 @@
   background: var(--blue);
 }
 
-.PersonName {
+.elipsis{
+  overflow: hidden;
+  display: block;
+  max-width: 130px;
   text-overflow: ellipsis;
 }

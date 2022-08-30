@@ -25,7 +25,7 @@ const ProfileCard = ({ location }) => {
   };
   useEffect(() => {
     fetchProfileUser();
-  }, [profileUser, profileUserId]);
+  }, [profileUserId]);
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
