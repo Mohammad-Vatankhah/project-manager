@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import * as UserApi from "../../api/UserRequest";
 import "./Comment.css";
 export const Comment = ({ data }) => {
@@ -34,10 +35,18 @@ export const Comment = ({ data }) => {
           alt=""
         />
         <span className="cm">
-          <span>
-            <b>{user.username}:</b>
-            {" " + data.desc}
-          </span>
+          <Link
+            to={`/profile/${user._id}`}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            <span>
+              <b>{user.username}:</b>
+              {" " + data.desc}
+            </span>
+          </Link>
         </span>
       </div>
       <span style={{ color: "var(--gray)", fontSize: "12px" }}>{time}</span>
