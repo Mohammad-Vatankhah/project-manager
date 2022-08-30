@@ -8,6 +8,7 @@ import {
   deleteProject,
   getProject,
   getTimeLinePosts,
+  getUserProject,
   likeProject,
   updateProject,
 } from "../Controllers/ProjectController.js";
@@ -24,4 +25,5 @@ router.delete("/:id/deleteProcess", deleteProcess);
 router.put("/:id/addComment", addComment);
 router.delete("/:id/deleteComment", deleteComment);
 router.get("/:id/timeLine", getTimeLinePosts);
+router.get("/:id/getUserProjects", getUserProject);
 export default router;
