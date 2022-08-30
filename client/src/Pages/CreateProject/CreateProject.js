@@ -98,6 +98,10 @@ export const CreateProject = () => {
     };
     setCompanies();
   }, []);
+
+  const handleCompany = (e) => {
+    setSelectedCompany(e.value)
+  }
   return (
     <div className="cp">
       <div className="CreateProject">
@@ -111,6 +115,7 @@ export const CreateProject = () => {
               styles={style}
               placeholder={selectedCompany !== "" ? selectedCompany : "Company"}
               className="select"
+              onChange={handleCompany}
               isSearchable={true}
             ></Select>
           </div>
