@@ -6,14 +6,14 @@ import { useEffect } from "react";
 import * as UserApi from "../../api/UserRequest.js";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-
+import * as ProjectApi from "../../api/ProjectRequest";
 const ProfileCard = ({ location }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const [profileUser, setProfileUser] = useState({});
+  const [projects, setProjects] = useState([]);
   const params = useParams();
   const profileUserId = params.id;
   const user = useSelector((state) => state.authReducer.authData.user);
-  const projects = useSelector((state) => state.projectReducer.project);
   const fetchProfileUser = () => {
     if (location === "home" || profileUserId === user._id) {
       setProfileUser(user);
@@ -24,6 +24,9 @@ const ProfileCard = ({ location }) => {
     }
   };
   useEffect(() => {
+    ProjectApi.getUserProject(params.id).then((res) => {
+      setProjects(res.data);
+    });
     fetchProfileUser();
   }, [profileUserId]);
   return (
@@ -57,25 +60,27 @@ const ProfileCard = ({ location }) => {
         <hr />
         <div>
           <div className="follow">
-            <span>{profileUser.followings ? profileUser.followings.length : "loading..."}</span>
+            <span>
+              {profileUser.followings
+                ? profileUser.followings.length
+                : "loading..."}
+            </span>
             <span>Followings</span>
           </div>
           <div className="vl"></div>
           <div className="follow">
-            <span>{profileUser.followers ? profileUser.followers.length : "loading..."}</span>
+            <span>
+              {profileUser.followers
+                ? profileUser.followers.length
+                : "loading..."}
+            </span>
             <span>Followers</span>
           </div>
           {location === "profilePage" && (
             <>
               <div className="vl"></div>
               <div className="follow">
-                <span>
-                  {
-                    projects.filter(
-                      (project) => project.publisher === profileUser._id
-                    ).length
-                  }
-                </span>
+                <span>{projects.length}</span>
                 <span>Projects</span>
               </div>
             </>
