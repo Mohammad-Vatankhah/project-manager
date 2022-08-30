@@ -10,7 +10,7 @@ import { useState } from "react";
 const Projects = () => {
   const params = useParams();
   const [projects, setProjects] = useState({});
-  let { project, loading } = useSelector((state) => state.projectReducer);
+  let { project } = useSelector((state) => state.projectReducer);
   const dispatch = useDispatch();
   useEffect(() => {
     if (params.id)
@@ -25,19 +25,19 @@ const Projects = () => {
   }
   return (
     <div className="Projects">
-      {loading
-        ? "Loading projects. Please wait..."
-        : params.id && projects.length > 0
-        ? projects.map((project, id) => {
-            return (
-              <Project
-                data={project}
-                id={id}
-                key={project._id}
-                location="home"
-              />
-            );
-          })
+      {params.id
+        ? projects.length > 0
+          ? projects.map((project, id) => {
+              return (
+                <Project
+                  data={project}
+                  id={id}
+                  key={project._id}
+                  location="home"
+                />
+              );
+            })
+          : "No projects available"
         : project.map((project, id) => {
             return (
               <Project
