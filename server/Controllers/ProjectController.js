@@ -28,6 +28,17 @@ export const getProject = async (req, res) => {
   }
 };
 
+// get projects of an user
+export const getUserProject = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const projects = await ProjectModel.find({ publisher: id });
+    res.status(200).json(projects);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // update a project
 export const updateProject = async (req, res) => {
   const projectId = req.params.id;
