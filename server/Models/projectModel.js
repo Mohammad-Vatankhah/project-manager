@@ -6,7 +6,10 @@ const ProcessSchema = mongoose.Schema(
       required: true,
     },
     image: String,
-    desc: String,
+    desc: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
