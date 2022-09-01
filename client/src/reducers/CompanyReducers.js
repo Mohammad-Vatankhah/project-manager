@@ -52,7 +52,20 @@ const companyReducer = (
       };
     case "CREATE_FAIL":
       return { ...state, loading: false, error: true, uploaded: false };
-
+    case "UPDATING_START":
+      return { ...state, loading: true, error: true, uploaded: false, uploading: true };
+    case "UPDATING_SUCCESS":
+      const company = state.companyData.findIndex(
+        (obj) => obj._id === action.data._id
+      );
+      state.companyData[company] = action.data;
+      return {
+        ...state,
+        companyData: state.companyData,
+        loading: false,
+        error: false,
+        uploaded: true,
+      };
     default:
       return state;
   }
