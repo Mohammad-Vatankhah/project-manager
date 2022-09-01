@@ -1,6 +1,5 @@
 import React from "react";
 import "./CompaniesCard.css";
-import * as CompanyApi from "../../api/CompanyRequests";
 import { useState } from "react";
 import { CompanyModal } from "../CompanyModal/CompanyModal";
 import { useParams } from "react-router-dom";
@@ -15,7 +14,7 @@ export const CompaniesCard = () => {
   const user = useSelector((state) => state.authReducer.authData.user);
   const [modalOpened, setModalOpened] = useState(false);
   useEffect(() => {
-    dispatch(getUserCompanies(user._id));
+    dispatch(getUserCompanies(profileUserId));
   }, [modalOpened, profileUserId]);
   const { companyData: companies, loading } = useSelector(
     (state) => state.companyReducer
