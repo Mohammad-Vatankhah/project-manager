@@ -17,10 +17,10 @@ export const CompanyPage = () => {
   }, [params.id]);
   return (
     <div className="CompanyPage">
-      <CompanyPageLeft />
+      <CompanyPageLeft company={companyData}/>
       <div className="companyPageCenter">
         <CompanyDetails
-          company={companyData && companyData}
+          company={companyData}
         />
         <PostSide />
       </div>
