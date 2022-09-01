@@ -9,6 +9,7 @@ import {
   removeEmployee,
   updateCompany,
 } from "../Controllers/CompanyController.js";
+import { getCompanyProjects } from "../Controllers/ProjectController.js";
 
 const router = express.Router();
 
@@ -20,4 +21,5 @@ router.put("/:id/addEmployee", addEmployee);
 router.put("/:id/removeEmployee", removeEmployee);
 router.get("/:id/getUserCompanies", getUserCompanies);
 router.get("/:username/getCompanyByUsername", getCompanyById);
+router.get("/:username/getCompanyProjects", getCompanyProjects);
 export default router;
