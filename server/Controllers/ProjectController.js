@@ -39,6 +39,17 @@ export const getUserProject = async (req, res) => {
   }
 };
 
+// get projects of a company
+export const getCompanyProjects = async (req, res) => {
+  const username = req.params.username;
+  try {
+    const projects = await ProjectModel.find({ company: username });
+    res.status(200).json(projects);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // update a project
 export const updateProject = async (req, res) => {
   const projectId = req.params.id;
