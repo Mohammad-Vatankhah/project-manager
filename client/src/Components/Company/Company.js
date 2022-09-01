@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getCompanyByUsername } from "../../api/CompanyRequests";
 import "./Company.css";
 export const Company = ({ company, location }) => {
@@ -35,9 +36,11 @@ export const Company = ({ company, location }) => {
           <span>{companyData.address}</span>
         </div>
       </div>
-      <button className="button" id="view-button">
-        View
-      </button>
+      <Link to={`/company/${company._id}`} style={{ textDecoration: "none" }}>
+        <button className="button" id="view-button">
+          View
+        </button>
+      </Link>
     </div>
   );
 };
