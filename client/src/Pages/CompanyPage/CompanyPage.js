@@ -11,7 +11,6 @@ export const CompanyPage = () => {
   const params = useParams();
   useEffect(() => {
     getCompanyById(params.id).then((res) => {
-      console.log(res.data);
       setCompanyData(res.data);
     });
   }, [params.id]);
