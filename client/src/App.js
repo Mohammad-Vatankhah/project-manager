@@ -6,6 +6,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UserProfile } from "./Pages/UserProfile/UserProfile";
 import { ProjectPage } from "./Pages/ProjectPage/ProjectPage";
+import { CompanyPage } from "./Pages/CompanyPage/CompanyPage";
 function App() {
   const user = useSelector((state) => state.authReducer.authData);
   return (
@@ -36,6 +37,10 @@ function App() {
         <Route
           path="/project/:id"
           element={user ? <ProjectPage /> : <Navigate to="../auth/" />}
+        />
+        <Route
+          path="/company/:id"
+          element={user ? <CompanyPage /> : <Navigate to="../auth" />}
         />
       </Routes>
     </div>
