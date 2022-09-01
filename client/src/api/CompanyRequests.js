@@ -10,3 +10,8 @@ export const createCompany = (formData) =>
 
 export const getCompanyByUsername = (username) =>
   API.get(`/company/${username}/getCompanyByUsername`);
+
+export const getCompanyById = (id) => API.get(`/company/${id}/getCompany`);
+
+export const getCompanyProjects = (username) =>
+  API.get(`/company/${username}/getProjects`);
