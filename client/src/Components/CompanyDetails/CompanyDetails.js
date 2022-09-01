@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./CompanyDetails.css";
 import Cover from "../../img/cover.jpg";
 import Profile from "../../img/profileImg.jpg";
-export const CompanyDetails = () => {
+import { getCompanyProjects } from "../../api/CompanyRequests";
+export const CompanyDetails = ({ company }) => {
+  const [companyProjects, setCompanyProjects] = useState([]);
+
+  useEffect(() => {
+    company &&
+      getCompanyProjects(company?.username).then((res) => {
+        setCompanyProjects(res.data);
+      });
+  }, []);
   return (
     <div className="CompanyDetails">
       <div className="companyImages">
@@ -11,17 +20,17 @@ export const CompanyDetails = () => {
       </div>
 
       <div className="companyName">
-        <span>Company Name</span>
+        <span>{company?.name}</span>
       </div>
       <div className="companyStatus">
         <hr />
         <div>
           <div className="status">
-            <span>20312</span>
+            <span>{company?.employees.length}</span>
             <span>Employees</span>
           </div>
           <div className="status">
-            <span>12345</span>
+            <span>{companyProjects?.length}</span>
             <span>Projects</span>
           </div>
         </div>
