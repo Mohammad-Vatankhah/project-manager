@@ -1,14 +1,23 @@
 import { Modal, useMantineTheme } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadImage } from "../../actions/UploadAction";
 import "../../Pages/Auth/Auth.css";
 import { createCompany } from "../../actions/CompanyActions";
+import { updateCompany } from "../../actions/CompanyActions";
+
+import { useParams } from "react-router-dom";
 export const CompanyModal = (props) => {
   const theme = useMantineTheme();
   const dispatch = useDispatch();
+  const params = useParams();
   const user = useSelector((state) => state.authReducer.authData.user);
-  const [formData, setFormData] = useState({ owner: user._id });
+  const [formData, setFormData] = useState();
+  useEffect(() => {
+    props.location === "edit"
+      ? setFormData(props?.company)
+      : setFormData({ owner: user._id });
+  }, []);
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const { uploading: creating, uploaded: created } = useSelector(
@@ -52,7 +61,11 @@ export const CompanyModal = (props) => {
         console.log(error);
       }
     }
-    dispatch(createCompany(formData));
+    if (props.location === "edit") {
+      dispatch(updateCompany(params.id, formData));
+    } else {
+      dispatch(createCompany(formData));
+    }
     created && props.setModalOpened(false);
   };
   return (
@@ -77,6 +90,7 @@ export const CompanyModal = (props) => {
             name="name"
             placeholder="Company Name"
             onChange={handleChange}
+            value={formData?.name}
           />
         </div>
         <div>
@@ -86,6 +100,7 @@ export const CompanyModal = (props) => {
             name="companyId"
             placeholder="Company ID"
             onChange={handleChange}
+            value={formData?.companyId}
           />
           <input
             className="infoInput"
@@ -93,6 +108,7 @@ export const CompanyModal = (props) => {
             name="contactNumber"
             placeholder="Contact Number"
             onChange={handleChange}
+            value={formData?.contactNumber}
           />
         </div>
         <div>
@@ -102,6 +118,7 @@ export const CompanyModal = (props) => {
             name="address"
             placeholder="Address"
             onChange={handleChange}
+            value={formData?.address}
           />
         </div>
         <div>
@@ -111,6 +128,7 @@ export const CompanyModal = (props) => {
             name="Email"
             placeholder="E-mail"
             onChange={handleChange}
+            value={formData?.Email}
           />
         </div>
         <div>
