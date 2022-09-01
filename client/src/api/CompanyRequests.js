@@ -14,4 +14,7 @@ export const getCompanyByUsername = (username) =>
 export const getCompanyById = (id) => API.get(`/company/${id}/getCompany`);
 
 export const getCompanyProjects = (username) =>
-  API.get(`/company/${username}/getProjects`);
+  API.get(`/company/${username}/getCompanyProjects`);
+
+export const updateCompany = (id, formData) =>
+  API.put(`/company/${id}/updateCompany`, formData);
