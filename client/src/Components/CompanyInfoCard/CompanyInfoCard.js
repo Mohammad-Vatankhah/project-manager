@@ -3,12 +3,10 @@ import "../InfoCard/InfoCard.css";
 import { UilPen } from "@iconscout/react-unicons";
 import { CompanyModal } from "../CompanyModal/CompanyModal";
 
-
-export const CompanyInfoCard = () => {
+export const CompanyInfoCard = ({ company }) => {
   const [modalOpened, setModalOpened] = useState(false);
-
   return (
-    <div style={{marginTop: "15px"}} className="CompanyInfoCard InfoCard">
+    <div style={{ marginTop: "15px" }} className="CompanyInfoCard InfoCard">
       <div className="infoHead">
         <h4>Company Info</h4>
         <UilPen
@@ -16,31 +14,34 @@ export const CompanyInfoCard = () => {
           height="1.2rem"
           onClick={() => setModalOpened(true)}
         />
-        <CompanyModal modalOpened={modalOpened} setModalOpened={setModalOpened}/>
+        <CompanyModal
+          modalOpened={modalOpened}
+          setModalOpened={setModalOpened}
+        />
       </div>
       <div className="info">
         <span>
           <b>Address: </b>
         </span>
-        <span>inja</span>
+        <span>{company?.address}</span>
       </div>
       <div className="info">
         <span>
           <b>Contact Number: </b>
         </span>
-        <span>123456789</span>
+        <span>{company?.contactNumber}</span>
       </div>
       <div className="info">
         <span>
           <b>Company ID: </b>
         </span>
-        <span>No where</span>
+        <span>{company?.companyId}</span>
       </div>
       <div className="info">
         <span>
           <b>E-mail: </b>
         </span>
-        <span>example@example.com</span>
+        <span>{company?.Email}</span>
       </div>
     </div>
   );

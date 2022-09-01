@@ -4,11 +4,11 @@ import { EmployeesCard } from "../EmployeesCard/EmployeesCard";
 import LogoSearch from "../LogoSearch/LogoSearch";
 import "./CompanyPageLeft.css";
 
-export const CompanyPageLeft = () => {
+export const CompanyPageLeft = ({ company }) => {
   return (
     <div className="CompanyPageLeft">
       <LogoSearch />
-      <CompanyInfoCard />
+      <CompanyInfoCard company={company}/>
       <EmployeesCard />
     </div>
   );
