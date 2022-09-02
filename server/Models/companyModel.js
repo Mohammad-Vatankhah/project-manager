@@ -31,6 +31,7 @@ const CompanySchema = mongoose.Schema(
     profilePicture: String,
     coverPicture: String,
     employees: [String],
+    projects: [String]
   },
   { timestamps: true }
 );
