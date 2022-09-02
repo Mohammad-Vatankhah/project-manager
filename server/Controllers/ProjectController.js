@@ -1,12 +1,20 @@
 import mongoose from "mongoose";
+import CompanyModel from "../Models/CompanyModel.js";
 import ProjectModel from "../Models/projectModel.js";
 import UserModel from "../Models/userModel.js";
 
 // create new project
 export const createProject = async (req, res) => {
+  const { company, ...other } = req.body;
   try {
     const newProject = new ProjectModel(req.body);
     await newProject.save();
+    if (company !== "") {
+      await CompanyModel.updateOne(
+        { companyId: company },
+        { $push: { projects: newProject._id } }
+      );
+    }
     res.status(200).json(newProject);
   } catch (error) {
     res.status(500).json({ message: error.message });
