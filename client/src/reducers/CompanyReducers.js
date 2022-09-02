@@ -3,7 +3,7 @@ const companyReducer = (
     companyData: [],
     loading: false,
     error: false,
-    uploading: false,
+    uploading: true,
     uploaded: false,
   },
   action
@@ -51,10 +51,22 @@ const companyReducer = (
         uploaded: true,
       };
     case "CREATE_FAIL":
-      return { ...state, loading: false, error: true, uploaded: false };
-    case "UPDATING_START":
-      return { ...state, loading: true, error: true, uploaded: false, uploading: true };
-    case "UPDATING_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        uploaded: false,
+        uploading: false,
+      };
+    case "UPDATING_C_START":
+      return {
+        ...state,
+        loading: true,
+        error: false,
+        uploaded: false,
+        uploading: true,
+      };
+    case "UPDATING_C_SUCCESS":
       const company = state.companyData.findIndex(
         (obj) => obj._id === action.data._id
       );
@@ -65,6 +77,15 @@ const companyReducer = (
         loading: false,
         error: false,
         uploaded: true,
+        uploading: false,
+      };
+    case "UPDATING_C_FAIL":
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        uploaded: false,
+        uploading: false,
       };
     default:
       return state;
