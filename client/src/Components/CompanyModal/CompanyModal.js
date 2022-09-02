@@ -97,14 +97,14 @@ export const CompanyModal = (props) => {
           />
         </div>
         <div>
-          <input
+          {props.location !== "edit" && <input
             className="infoInput"
             type="text"
             name="companyId"
             placeholder="Company ID"
             onChange={handleChange}
             value={formData?.companyId}
-          />
+          />}
           <input
             className="infoInput"
             type="text"
