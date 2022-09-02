@@ -17,7 +17,7 @@ export const CompanyModal = (props) => {
     props.location === "edit"
       ? setFormData(props?.company)
       : setFormData({ owner: user._id });
-  }, []);
+  }, [props.company]);
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
   const { uploading: creating, uploaded: created } = useSelector(
@@ -34,6 +34,7 @@ export const CompanyModal = (props) => {
         : setCoverImage(img);
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let companyData = formData;
@@ -62,7 +63,9 @@ export const CompanyModal = (props) => {
       }
     }
     if (props.location === "edit") {
+      formData.currentUserId = user._id;
       dispatch(updateCompany(params.id, formData));
+      window.location.reload();
     } else {
       dispatch(createCompany(formData));
     }
@@ -141,9 +144,12 @@ export const CompanyModal = (props) => {
           style={{ width: "6rem", height: "2rem" }}
           className="button"
           onClick={handleSubmit}
-          disabled={creating}
         >
-          {creating ? "Creating..." : "Create"}
+          {props.location === "edit"
+            ? "Update"
+            : creating
+            ? "Creating..."
+            : "Create"}
         </button>
       </form>
     </Modal>
