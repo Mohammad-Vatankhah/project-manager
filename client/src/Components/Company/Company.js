@@ -12,11 +12,9 @@ export const Company = ({ company, location }) => {
     if (location === "profile") {
       setCompanyData(company);
     } else {
-      const fetchCompany = async () => {
-        const { data } = await getCompanyByUsername(company);
-        setCompanyData(data);
-      };
-      fetchCompany();
+        getCompanyByUsername(company).then((res) => {
+          setCompanyData(res.data);
+        })
     }
   }, []);
   return (
@@ -36,7 +34,7 @@ export const Company = ({ company, location }) => {
           <span>{companyData.address}</span>
         </div>
       </div>
-      <Link to={`/company/${company._id}`} style={{ textDecoration: "none" }}>
+      <Link to={`/company/${companyData._id}`} style={{ textDecoration: "none" }}>
         <button className="button" id="view-button">
           View
         </button>
