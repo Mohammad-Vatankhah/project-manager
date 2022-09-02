@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import "./Processes.css";
 import { Process } from "../Process/Process";
 export const Processes = ({ project }) => {
