@@ -59,7 +59,7 @@ export const updateCompany = async (req, res) => {
   const { currentUserId, currentUserAdminStatus, ...otherInfo } = req.body;
   try {
     const user = await UserModel.findById(currentUserId);
-    if (user.companies.includes(id) || currentUserAdminStatus) {
+    if (otherInfo.owner === currentUserId || currentUserAdminStatus) {
       const company = await CompanyModel.findByIdAndUpdate(
         id,
         {
