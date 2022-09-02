@@ -1,17 +1,8 @@
-import React, { useEffect, useState } from "react";
 import "./CompanyDetails.css";
 import Cover from "../../img/cover.jpg";
 import Profile from "../../img/profileImg.jpg";
-import { getCompanyProjects } from "../../api/CompanyRequests";
 export const CompanyDetails = ({ company }) => {
-  const [companyProjects, setCompanyProjects] = useState([]);
-
-  useEffect(() => {
-    company &&
-      getCompanyProjects(company?.username).then((res) => {
-        setCompanyProjects(res.data);
-      });
-  }, []);
+  
   return (
     <div className="CompanyDetails">
       <div className="companyImages">
@@ -30,7 +21,7 @@ export const CompanyDetails = ({ company }) => {
             <span>Employees</span>
           </div>
           <div className="status">
-            <span>{companyProjects?.length}</span>
+            <span>{company?.projects.length}</span>
             <span>Projects</span>
           </div>
         </div>
