@@ -16,12 +16,10 @@ export const CompanyPage = () => {
   }, [params.id]);
   return (
     <div className="CompanyPage">
-      <CompanyPageLeft company={companyData}/>
+      <CompanyPageLeft company={companyData} />
       <div className="companyPageCenter">
-        <CompanyDetails
-          company={companyData}
-        />
-        <PostSide />
+        <CompanyDetails company={companyData} />
+        <PostSide company={companyData} />
       </div>
       <RightSide />
     </div>
