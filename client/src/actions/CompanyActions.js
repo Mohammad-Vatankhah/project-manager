@@ -23,11 +23,11 @@ export const createCompany = (data) => async (dispatch) => {
 };
 
 export const updateCompany = (id, formData) => async (dispatch) => {
-  dispatch({ type: "UPDATING_START" });
+  dispatch({ type: "UPDATING_C_START" });
   try {
     const { data } = await CompanyApi.updateCompany(id, formData);
-    dispatch({ type: "UPDATING_SUCCESS", data: data });
+    dispatch({ type: "UPDATING_C_SUCCESS", data: data });
   } catch (error) {
-    dispatch({ type: "UPDATING_FAIL" });
+    dispatch({ type: "UPDATING_C_FAIL" });
   }
 };
