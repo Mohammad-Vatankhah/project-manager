@@ -45,8 +45,8 @@ export const AddProcess = ({ modalOpened, setModalOpened }) => {
         .catch((err) => {
           console.log(err);
         });
+      window.location.reload();
     }
-    <Navigate to={`../project/${params.id}`} />;
   };
   return (
     <Modal
