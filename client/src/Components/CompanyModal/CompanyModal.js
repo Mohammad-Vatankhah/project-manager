@@ -16,7 +16,14 @@ export const CompanyModal = (props) => {
   useEffect(() => {
     props.location === "edit"
       ? setFormData(props?.company)
-      : setFormData({ owner: user._id });
+      : setFormData({
+          owner: user._id,
+          name: "",
+          companyId: "",
+          contactNumber: "",
+          address: "",
+          Email: "",
+        });
   }, [props.company]);
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
@@ -97,14 +104,16 @@ export const CompanyModal = (props) => {
           />
         </div>
         <div>
-          {props.location !== "edit" && <input
-            className="infoInput"
-            type="text"
-            name="companyId"
-            placeholder="Company ID"
-            onChange={handleChange}
-            value={formData?.companyId}
-          />}
+          {props.location !== "edit" && (
+            <input
+              className="infoInput"
+              type="text"
+              name="companyId"
+              placeholder="Company ID"
+              onChange={handleChange}
+              value={formData?.companyId}
+            />
+          )}
           <input
             className="infoInput"
             type="text"
