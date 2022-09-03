@@ -18,3 +18,7 @@ export const getCompanyProjects = (username) =>
 
 export const updateCompany = (id, formData) =>
   API.put(`/company/${id}/updateCompany`, formData);
+
+export const addEmployee = (id, data) => {
+  API.put(`/company/${id}/addEmployee`, data);
+};
