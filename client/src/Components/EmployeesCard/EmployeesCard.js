@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./EmployeesCard.css";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import { getUser } from "../../api/UserRequest";
+import { getByUsername } from "../../api/UserRequest";
 import { User } from "../User/User";
 export const EmployeesCard = ({ company }) => {
   const user = useSelector((state) => state.authReducer.authData.user);
@@ -10,7 +10,7 @@ export const EmployeesCard = ({ company }) => {
   useEffect(() => {
     if (company?.employees.length > 0) {
       company?.employees.map((e) => {
-        getUser(e).then((res) => {
+        getByUsername(e).then((res) => {
           setEmployees((prev) => [...prev, res.data]);
         });
       });
@@ -26,11 +26,13 @@ export const EmployeesCard = ({ company }) => {
           />
         )}
       </div>
-      {company?.employees.length > 0
-        ? employees.map((employee) => (
-            <User person={employee} key={employee._id} />
-          ))
-        : "No employees available!"}
+      <div className="employeeCard">
+        {company?.employees.length > 0
+          ? employees.map((employee) => (
+              <User person={employee} key={employee._id} />
+            ))
+          : "No employees available!"}
+      </div>
     </div>
   );
 };
