@@ -61,9 +61,13 @@
   background: var(--blue);
 }
 
-.elipsis{
+.elipsis {
   overflow: hidden;
   display: block;
   max-width: 130px;
   text-overflow: ellipsis;
+}
+
+.employeeCard {
+  overflow: scroll;
 }
