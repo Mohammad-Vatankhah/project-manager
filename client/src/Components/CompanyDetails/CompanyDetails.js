@@ -1,6 +1,4 @@
 import "./CompanyDetails.css";
-import Cover from "../../img/cover.jpg";
-import Profile from "../../img/profileImg.jpg";
 export const CompanyDetails = ({ company }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   
