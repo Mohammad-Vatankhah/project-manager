@@ -7,6 +7,12 @@
     font-size: 13px;
   }
   
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
   .employee {
     background-color: var(--cardColor);
     padding: 10px;
