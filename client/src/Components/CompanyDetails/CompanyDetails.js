@@ -2,12 +2,17 @@ import "./CompanyDetails.css";
 import Cover from "../../img/cover.jpg";
 import Profile from "../../img/profileImg.jpg";
 export const CompanyDetails = ({ company }) => {
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   
   return (
     <div className="CompanyDetails">
       <div className="companyImages">
-        <img src={Cover} alt="" />
-        <img src={Profile} alt="" />
+        <img src={company?.coverPicture
+              ? serverPublic + company?.coverPicture
+              : serverPublic + "defaultCover.jpg"} alt="" />
+        <img src={company?.profilePicture
+              ? serverPublic + company?.profilePicture
+              : serverPublic + "defaultCompanyProfile.png"} alt="" />
       </div>
 
       <div className="companyName">
