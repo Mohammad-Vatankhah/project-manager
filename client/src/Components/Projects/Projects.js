@@ -7,7 +7,6 @@ import { getTimelinePost } from "../../actions/ProjectAction";
 import { useParams } from "react-router-dom";
 import * as ProjectApi from "../../api/ProjectRequest";
 import { useState } from "react";
-import { getCompanyById, getCompanyProjects } from "../../api/CompanyRequests";
 const Projects = ({ company }) => {
   const params = useParams();
   const [projects, setProjects] = useState([]);
