@@ -8,8 +8,8 @@ export const CompanyPageLeft = ({ company }) => {
   return (
     <div className="CompanyPageLeft">
       <LogoSearch />
-      <CompanyInfoCard company={company}/>
-      <EmployeesCard />
+      <CompanyInfoCard company={company} />
+      <EmployeesCard company={company} />
     </div>
   );
 };
