@@ -4,9 +4,12 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { getByUsername } from "../../api/UserRequest";
 import { User } from "../User/User";
+import { AddEmployeeModal } from "../AddEmployeeModal/AddEmployeeModal";
 export const EmployeesCard = ({ company }) => {
   const user = useSelector((state) => state.authReducer.authData.user);
   const [employees, setEmployees] = useState([]);
+  const [modalOpened, setModalOpened] = useState(false);
+
   useEffect(() => {
     if (company?.employees.length > 0) {
       company?.employees.map((e) => {
@@ -23,6 +26,7 @@ export const EmployeesCard = ({ company }) => {
         {company?.owner === user._id && (
           <AiOutlinePlus
             style={{ cursor: "pointer", fontSize: "20px", color: "black" }}
+            onClick={() => setModalOpened(true)}
           />
         )}
       </div>
@@ -33,6 +37,11 @@ export const EmployeesCard = ({ company }) => {
             ))
           : "No employees available!"}
       </div>
+      <AddEmployeeModal
+        modalOpened={modalOpened}
+        setModalOpened={setModalOpened}
+        company={company}
+      />
     </div>
   );
 };
