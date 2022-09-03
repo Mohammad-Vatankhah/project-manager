@@ -18,8 +18,6 @@ const authReducer = (
     case "UPDATING_FAIL":
       return { ...state, loading: false, error: true };
     case "FOLLOW_USER":
-      console.log(action.data);
-
       return {
         ...state,
         authData: {
@@ -31,7 +29,6 @@ const authReducer = (
         },
       };
     case "UNFOLLOW_USER":
-      console.log(action.data);
       return {
         ...state,
         authData: {
