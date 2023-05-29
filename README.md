@@ -15,3 +15,5 @@ creat company:
 ![image](https://github.com/M-Vi4/project-manager/assets/81406400/8c6f3a7d-bc74-491a-aa7d-52890b7d5792)
 company profile:
 ![image](https://github.com/M-Vi4/project-manager/assets/81406400/752306d9-4242-4199-b7d3-eaf1998e92bc)
+project page:
+![image](https://github.com/M-Vi4/project-manager/assets/81406400/46397759-ee7d-4efd-9465-a25ade7d6369)
